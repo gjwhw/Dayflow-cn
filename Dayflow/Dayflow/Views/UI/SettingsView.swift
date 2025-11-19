@@ -890,8 +890,13 @@ struct SettingsView: View {
         Task.detached(priority: .utility) {
             let permission = CGPreflightScreenCaptureAccess()
             let recordingsURL = StorageManager.shared.recordingsRoot
+
+            // 动态获取应用名称，确保不同版本使用不同的存储路径
+            let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+                         Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ??
+                         "Dayflow"
             let timelapseURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-                .appendingPathComponent("Dayflow/timelapses", isDirectory: true)
+                .appendingPathComponent("\(appName)/timelapses", isDirectory: true)
 
             let recordingsSize = SettingsView.directorySize(at: recordingsURL)
             let timelapseSize = TimelapseStorageManager.shared.currentUsageBytes()
@@ -914,13 +919,23 @@ struct SettingsView: View {
     }
 
     private func openRecordingsFolder() {
-        let url = StorageManager.shared.recordingsRoot
+        // 动态获取应用名称，确保不同版本使用不同的存储路径
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+                     Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ??
+                     "Dayflow"
+        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let url = appSupport.appendingPathComponent("\(appName)/recordings", isDirectory: true)
         ensureDirectoryExists(url)
         NSWorkspace.shared.open(url)
     }
 
     private func openTimelapseFolder() {
-        let url = TimelapseStorageManager.shared.rootURL
+        // 动态获取应用名称，确保不同版本使用不同的存储路径
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+                     Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ??
+                     "Dayflow"
+        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let url = appSupport.appendingPathComponent("\(appName)/timelapses", isDirectory: true)
         ensureDirectoryExists(url)
         NSWorkspace.shared.open(url)
     }

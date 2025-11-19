@@ -173,7 +173,7 @@ struct MainView: View {
 
                                     // Recording toggle (now inline with header)
                                     HStack(spacing: 4) {
-                                        Text("Record")
+                                        Text("录制")
                                             .font(
                                                 Font.custom("Nunito", size: 12)
                                                     .weight(.medium)
@@ -184,7 +184,7 @@ struct MainView: View {
                                             .labelsHidden()
                                             .toggleStyle(SunriseGlassPillToggleStyle())
                                             .scaleEffect(0.7)
-                                            .accessibilityLabel(Text("Recording"))
+                                            .accessibilityLabel(Text("正在录制"))
                                     }
                                 }
                                 .padding(.horizontal, 10)
@@ -1065,17 +1065,17 @@ struct ActivityCard: View {
             VStack(spacing: 10) {
                 Spacer()
                 if hasAnyActivities {
-                    Text("Select an activity to view details")
+                    Text("选择活动查看详情")
                         .font(.custom("Nunito", size: 15))
                         .fontWeight(.regular)
                         .foregroundColor(.gray.opacity(0.5))
                 } else {
                     if appState.isRecording {
                         VStack(spacing: 6) {
-                            Text("No cards yet")
+                            Text("暂无卡片")
                                 .font(.system(size: 14, weight: .semibold))
                                 .foregroundColor(.gray.opacity(0.7))
-                            Text("Cards are generated about every 15 minutes. If Dayflow is on and no cards show up within 30 minutes, please report a bug.")
+                            Text("卡片大约每15分钟生成一次。如果Dayflow开启后30分钟内仍未显示卡片，请报告错误。")
                                 .font(.custom("Nunito", size: 13))
                                 .foregroundColor(.gray.opacity(0.6))
                                 .multilineTextAlignment(.center)
@@ -1083,10 +1083,10 @@ struct ActivityCard: View {
                         }
                     } else {
                         VStack(spacing: 6) {
-                            Text("Recording is off")
+                            Text("录制已关闭")
                                 .font(.system(size: 14, weight: .semibold))
                                 .foregroundColor(.gray.opacity(0.7))
-                            Text("Dayflow recording is currently turned off, so cards aren’t being produced.")
+                            Text("Dayflow录制当前已关闭，因此不会生成卡片。")
                                 .font(.custom("Nunito", size: 13))
                                 .foregroundColor(.gray.opacity(0.6))
                                 .multilineTextAlignment(.center)
@@ -1171,7 +1171,7 @@ struct ActivityCard: View {
                                         .frame(width: 24, height: 24)
                                 }
                                 .buttonStyle(PlainButtonStyle())
-                                .accessibilityLabel(Text("Change category"))
+                                .accessibilityLabel(Text("更改分类"))
                             }
                         }
                     }
@@ -1235,7 +1235,7 @@ struct ActivityCard: View {
     private func summaryContent(for activity: TimelineActivity) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             VStack(alignment: .leading, spacing: 3) {
-                Text("SUMMARY")
+                Text("摘要")
                     .font(
                         Font.custom("Nunito", size: 12)
                             .weight(.semibold)
@@ -1254,7 +1254,7 @@ struct ActivityCard: View {
 
             if !activity.detailedSummary.isEmpty && activity.detailedSummary != activity.summary {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("DETAILED SUMMARY")
+                    Text("详细摘要")
                         .font(
                             Font.custom("Nunito", size: 12)
                                 .weight(.semibold)
@@ -1317,7 +1317,7 @@ struct ActivityCard: View {
                     .scaleEffect(0.7)
                     .frame(width: 16, height: 16)
 
-                Text("Processing")
+                Text("处理中")
                     .font(.custom("Nunito", size: 13))
                     .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
                     .lineLimit(1)
@@ -1330,7 +1330,7 @@ struct ActivityCard: View {
             // Retry button - orange pill
             Button(action: { handleRetry(for: activity) }) {
                 HStack(alignment: .center, spacing: 4) {
-                    Text("Retry")
+                    Text("重试")
                         .font(.custom("Nunito", size: 13).weight(.medium))
                     Image(systemName: "arrow.clockwise")
                         .font(.system(size: 13, weight: .medium))
