@@ -38,67 +38,64 @@ enum OllamaPromptPreferences {
 
 enum OllamaPromptDefaults {
     static let summaryBlock = """
-          SUMMARY GUIDELINES:
-          - Write in first person without using "I" (like a personal journal entry)
-          - 2-3 sentences maximum
-          - Include specific details (app names, search topics, etc.)
-          - Natural, conversational tone
+          摘要指导原则：
+          - 用第一人称写作但不使用"我"（像个人日记条目）
+          - 最多2-3个句子
+          - 包含具体细节（应用名称、搜索主题等）
+          - 自然、对话式语调
 
-          GOOD EXAMPLES:
-          "Managed Mac system preferences focusing on software updates and accessibility settings. Browsed Chrome searching for iPhone wireless charging info while
-          checking Twitter and Slack messages."
+          良好示例：
+          "管理Mac系统偏好设置，重点关注软件更新和无障碍设置。浏览Chrome搜索iPhone无线充电信息，同时检查Twitter和Slack消息。"
 
-          "Configured GitHub Actions pipeline for automated testing. Quick Slack check interrupted focus, then back to debugging deployment issues."
+          "为GitHub Actions配置自动化测试管道。快速的Slack检查中断了专注，然后回到调试部署问题。"
 
-          "Researched React performance optimization techniques in Chrome, reading articles about useMemo patterns. Switched between documentation tabs and took notes in
-           Notion about component re-rendering."
+          "在Chrome中研究React性能优化技术，阅读关于useMemo模式的文章。在文档标签之间切换，并在Notion中记录关于组件重新渲染的笔记。"
 
-          "Updated Xcode project dependencies and resolved build errors in SwiftUI views. Tested app on simulator while responding to client messages about timeline
-          changes."
+          "更新Xcode项目依赖项并解决SwiftUI视图中的构建错误。在模拟器上测试应用，同时回复关于时间线更改的客户消息。"
 
-          "Browsed Instagram and TikTok while listening to Spotify playlist. Responded to personal messages on WhatsApp about weekend plans."
+          "在听Spotify播放列表的同时浏览Instagram和TikTok。在WhatsApp上回复关于周末计划的个人消息。"
 
-          "Researched vacation destinations on travel websites and compared flight prices. Checked weather forecasts for different cities while reading travel reviews."
+          "在旅行网站上研究度假目的地并比较航班价格。在阅读旅行评论的同时检查不同城市的天气预报。"
 
-          BAD EXAMPLES:
-          - "The user did various computer activities" (too vague, wrong perspective, never say the user)
-          - "I was working on my computer doing different tasks" (uses "I", not specific)
-          - "Spent time on multiple applications and websites" (generic, no details)
+          错误示例：
+          - "用户进行了各种计算机活动"（太模糊，错误视角，永远不要说用户）
+          - "我在电脑上做不同的任务"（使用了"我"，不具体）
+          - "在多个应用和网站上花费时间"（通用，没有细节）
     """
 
     static let titleBlock = """
-        TITLE GUIDELINES:
-        Write like you're texting a friend. Keep it conversational and within 5-8 words (lean short).
-        Focus on ONE standout activity; you may mention one other equally dominant action, but phrase it as a quick "and/while" or dash connection (never a comma list).
-        Lead with an active verb or app + action, and include at most one supporting detail (app, medium, or topic). If you mention two activities, make it clear they both mattered without sounding like a checklist.
-        Describe what you were doing with the app/site; never just list tool names or open windows.
-        ⚠️ ONLY use details that exist in the summary — never invent context.
+        标题指导原则：
+        写标题就像您在给朋友发短信。保持对话式并在5-8个词内（偏向简短）。
+        专注于一个突出的活动；您可以提到另一个同等重要的行动，但表达为快速的"和/当"或破折号连接（从不使用逗号列表）。
+        以主动动词或应用+行动开头，最多包含一个支持细节（应用、媒介或主题）。如果您提到两个活动，要确保它们都很重要而不听起来像清单。
+        描述您在应用/网站上做什么；永远不要只列出工具名称或打开的窗口。
+        ⚠️ 只使用摘要中存在的细节 - 永远不要捏造上下文。
 
-        GOOD EXAMPLES:
-        "Debugged auth flow in VS Code"
-        "YouTube rabbit hole on gaming drama"
-        "Reviewing Figma designs"
-        "Slack catching up during deploy wait"
-        "Tweaked React hooks for dashboard"
+        良好示例：
+        "在VS Code中调试认证流程"
+        "YouTube游戏戏剧深度探索"
+        "审查Figma设计"
+        "部署等待期间Slack追进度"
+        "为仪表板调整React hooks"
 
-        BAD EXAMPLES (with explanations):
+        错误示例（附解释）：
 
-        ✗ "React coded, games streamed, tweets checked"
-          WHY BAD: Lists three different activities; no focus or clear takeaway.
+        ✗ "React编码、游戏流媒体、推文检查"
+          为什么错误：列出了三种不同的活动；没有焦点或明确的要点。
 
-        ✗ "User engaging in video calls, software updates, and browsing system preferences"
-          WHY BAD: Too long (11 words), formal "engaging", says "User" instead of natural first-person
+        ✗ "用户参与视频通话、软件更新和浏览系统偏好设置"
+          为什么错误：太长（11个词），正式的"参与"，说"用户"而不是自然的第一人称
 
-        ✗ "Browsing and Browsing, Responding to Slack"
-          WHY BAD: Repetitive "Browsing and Browsing", unclear what was browsed, awkward phrasing
+        ✗ "浏览和浏览，回复Slack"
+          为什么错误：重复的"浏览和浏览"，不清楚浏览了什么，措辞笨拙
 
-        ✗ "(Debugging & Coding) User's Time Spans"
-          WHY BAD: Weird parentheses format, formal "Time Spans", says "User's" instead of natural language
+        ✗ "（调试和编码）用户的时间跨度"
+          为什么错误：奇怪的括号格式，正式的"时间跨度"，说"用户的"而不是自然语言
 
-        ✗ "Working on computer tasks and applications"
-          WHY BAD: Completely generic, "working on" is lazy, could describe any computer use
-        ✗ "GitHub Desktop + terminal logs"
-          WHY BAD: Only lists tools; doesn't explain the action or intent
+        ✗ "在计算机任务和应用上工作"
+          为什么错误：完全通用，"在...上工作"是懒惰的，可以描述任何计算机使用
+        ✗ "GitHub Desktop + 终端日志"
+          为什么错误：只列出工具；不解释行动或意图
     """
 }
 

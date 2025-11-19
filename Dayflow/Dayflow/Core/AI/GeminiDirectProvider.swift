@@ -43,26 +43,26 @@ final class GeminiDirectProvider: LLMProvider {
 
     private func categoriesSection(from descriptors: [LLMCategoryDescriptor]) -> String {
         guard !descriptors.isEmpty else {
-            return "USER CATEGORIES: No categories configured. Use consistent labels based on the activity story."
+            return "用户分类：没有配置分类。基于活动故事使用一致的标签。"
         }
 
         let allowed = descriptors.map { "\"\($0.name)\"" }.joined(separator: ", ")
-        var lines: [String] = ["USER CATEGORIES (choose exactly one label):"]
+        var lines: [String] = ["用户分类（选择 exactly one 标签）："]
 
         for (index, descriptor) in descriptors.enumerated() {
             var desc = descriptor.description?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             if descriptor.isIdle && desc.isEmpty {
-                desc = "Use when the user is idle for most of this period."
+                desc = "当用户在这段时间内大部分时间空闲时使用。"
             }
             let suffix = desc.isEmpty ? "" : " — \(desc)"
             lines.append("\(index + 1). \"\(descriptor.name)\"\(suffix)")
         }
 
         if let idle = descriptors.first(where: { $0.isIdle }) {
-            lines.append("Only use \"\(idle.name)\" when the user is idle for more than half of the timeframe. Otherwise pick the closest non-idle label.")
+            lines.append("只有当用户在这段时间内超过一半时间空闲时才使用\"\(idle.name)\"。否则选择最接近的非空闲标签。")
         }
 
-        lines.append("Return the category exactly as written. Allowed values: [\(allowed)].")
+        lines.append("完全按照书面形式返回分类。允许值：[\(allowed)]。")
         return lines.joined(separator: "\n")
     }
 
@@ -277,122 +277,122 @@ final class GeminiDirectProvider: LLMProvider {
         let durationString = String(format: "%02d:%02d", durationMinutes, durationSeconds)
         
         let finalTranscriptionPrompt = """
-        # Video Transcription Prompt
+        # 视频转录提示词
 
-        Your job is to transcribe someone's computer usage into a small number of meaningful activity segments.
+        您的工作是将某人的计算机使用情况转录为少量有意义的活动片段。
 
-        ## CRITICAL: This video is exactly \(durationString) long. ALL timestamps MUST be within 00:00 to \(durationString).
+        ## 关键：这个视频长度正好是\(durationString)。所有时间戳必须在00:00到\(durationString)之间。
 
-        ## Golden Rule: Aim for 3-5 segments per 15-minute video (fewer is better than more)
+        ## 黄金法则：每15分钟视频目标3-5个片段（越少越好）
 
-        ## Core Principles:
-        1. **Group by purpose, not by platform** - If someone is planning a trip across 5 websites, that's ONE segment
-        2. **Include interruptions in the description** - Don't create segments for brief distractions
-        3. **Only split when context changes for 2-3+ minutes** - Quick checks don't count as context switches
-        4. **Combine related activities** - Multiple videos on the same topic = one segment
-        5. **Think in terms of "sessions"** - What would you tell a friend you spent time doing?
-        6. **Idle detection** - if the screen stays exactly the same for 5+ minutes, make sure to note that within the observation that the user was idle during that period and not performing and actions, but still be specific about what's currently on the screen.
+        ## 核心原则：
+        1. **按目的分组，而不是按平台** - 如果有人在5个网站上规划旅行，那是一个片段
+        2. **在描述中包含中断** - 不要为短暂的分心创建片段
+        3. **只有当上下文改变2-3分钟以上时才分割** - 快速查看不算上下文切换
+        4. **合并相关活动** - 同一主题的多个视频 = 一个片段
+        5. **以"会话"方式思考** - 您会告诉朋友您花时间做了什么？
+        6. **空闲检测** - 如果屏幕在5分钟以上保持完全相同，确保在观察记录中注明用户在该期间处于空闲状态且没有执行任何操作，但仍要具体说明屏幕上当前显示的内容。
 
-        ## When to create a new segment:
-        Only when the user switches to a COMPLETELY different purpose for MORE than 2-3 minutes:
-        - Entertainment → Work
-        - Learning → Shopping  
-        - Project A → Project B
-        - Topic X → Unrelated Topic Y
+        ## 何时创建新片段：
+        只有当用户切换到完全不同的目的且持续超过2-3分钟时：
+        - 娱乐 → 工作
+        - 学习 → 购物
+        - 项目A → 项目B
+        - 主题X → 无关主题Y
 
-        ## Format:
+        ## 格式：
         ```json
         [
           {
             "startTimestamp": "MM:SS",
-            "endTimestamp": "MM:SS", 
-            "description": "1-3 sentences describing what the user accomplished"
+            "endTimestamp": "MM:SS",
+            "description": "1-3句话描述用户完成了什么"
           }
         ]
         ```
 
-        ## Examples:
+        ## 示例：
 
-        **GOOD - Properly condensed:**
+        **良好 - 适当压缩：**
         ```json
         [
           {
             "startTimestamp": "00:00",
             "endTimestamp": "06:45",
-            "description": "User plans a trip to Japan, researching flights on multiple booking sites, reading hotel reviews, and watching YouTube videos about Tokyo neighborhoods. They briefly check email twice and respond to a text message during their research."
+            "description": "用户规划日本旅行，在多个预订网站研究航班，阅读酒店评论，并观看关于东京街区的YouTube视频。他们在研究期间简要检查了两次邮件并回复了一条短信。"
           },
           {
-            "startTimestamp": "06:45", 
+            "startTimestamp": "06:45",
             "endTimestamp": "10:30",
-            "description": "User takes an online Spanish course, completing lesson exercises and watching grammar explanation videos. They use Google Translate to verify some phrases and briefly check Reddit when they get stuck on a difficult concept."
+            "description": "用户参加在线西班牙语课程，完成课程练习并观看语法解释视频。他们使用谷歌翻译验证一些短语，当遇到困难概念时简要查看Reddit。"
           },
           {
             "startTimestamp": "10:30",
             "endTimestamp": "14:58",
-            "description": "User shops for home gym equipment, comparing prices across Amazon, fitness retailer sites, and watching product review videos. They check their banking app to verify their budget midway through."
+            "description": "用户购买家用健身器材，在亚马逊、健身零售商网站比较价格，并观看产品评测视频。他们在中途查看银行应用以确认预算。"
           }
         ]
         ```
 
-        **BAD - Too many segments:**
+        **错误 - 片段过多：**
         ```json
         [
           {
             "startTimestamp": "00:00",
             "endTimestamp": "02:00",
-            "description": "User searches for flights to Tokyo"
+            "description": "用户搜索飞往东京的航班"
           },
           {
             "startTimestamp": "02:00",
-            "endTimestamp": "02:30", 
-            "description": "User checks email"
+            "endTimestamp": "02:30",
+            "description": "用户检查邮件"
           },
           {
             "startTimestamp": "02:30",
             "endTimestamp": "04:00",
-            "description": "User looks at hotels in Tokyo"
+            "description": "用户查看东京的酒店"
           },
           {
             "startTimestamp": "04:00",
             "endTimestamp": "05:00",
-            "description": "User watches a Tokyo travel video"
+            "description": "用户观看东京旅行视频"
           }
         ]
         ```
 
-        **ALSO BAD - Splitting brief interruptions:**
+        **也错误 - 分割短暂中断：**
         ```json
         [
           {
             "startTimestamp": "00:00",
             "endTimestamp": "05:00",
-            "description": "User shops for gym equipment"
+            "description": "用户购买健身器材"
           },
           {
             "startTimestamp": "05:00",
             "endTimestamp": "05:45",
-            "description": "User checks their bank balance"
+            "description": "用户检查银行余额"
           },
           {
             "startTimestamp": "05:45",
             "endTimestamp": "10:00",
-            "description": "User continues shopping for gym equipment"
+            "description": "用户继续购买健身器材"
           }
         ]
         ```
 
-        **CORRECT way to handle the above:**
+        **正确处理上述情况的方案：**
         ```json
         [
           {
             "startTimestamp": "00:00",
             "endTimestamp": "10:00",
-            "description": "User shops for home gym equipment across multiple retailers, comparing dumbbells, benches, and resistance bands. They briefly check their bank balance around the 5-minute mark to confirm their budget before continuing."
+            "description": "用户在多个零售商购买家用健身器材，比较哑铃、长凳和阻力带。他们在5分钟标记左右简要检查银行余额以确认预算后继续。"
           }
         ]
         ```
 
-        Remember: The goal is to tell the story of what someone accomplished, not log every click. Group aggressively and only split when they truly change what they're doing for an extended period. If an activity is less than 2-3 minutes, it almost never deserves its own segment.
+        记住：目标是讲述某人完成了什么的故事，而不是记录每次点击。积极分组，只有当他们真正改变正在做的事情较长时间时才分割。如果活动少于2-3分钟，几乎永远不值得拥有自己的片段。
         """
 
         // UNIFIED RETRY LOOP - Handles ALL errors comprehensively
@@ -642,17 +642,15 @@ final class GeminiDirectProvider: LLMProvider {
         let promptSections = GeminiPromptSections(overrides: GeminiPromptPreferences.load())
 
         let basePrompt = """
-        You are a digital anthropologist, observing a user's raw activity log. Your goal is to synthesize this log into a high-level, human-readable story of their session, presented as a series of timeline cards.
-        THE GOLDEN RULE:
-            Create cards that narrate one cohesive session, aiming for 15–60 minutes. Keep every card ≥10 minutes, split up any cards that are >60 minutes, and if a prospective card would be <10 minutes, merge it into the neighboring card that preserves the best story.
+        您是一位数字人类学家，观察用户的原始活动日志。您的目标是将这个日志合成为高级别的、人类可读的会话故事，以时间线卡片系列的形式呈现。
+        黄金法则：
+            创建叙述一个连贯会话的卡片，目标15-60分钟。保持每张卡片≥10分钟，分割任何>60分钟的卡片，如果潜在卡片<10分钟，将其合并到保留最佳故事的相邻卡片中。
 
-            CONTINUITY RULE:
-            You may adjust boundaries for clarity, but never introduce new gaps or overlaps. Preserve any original gaps in the source timeline and keep adjacent covered
-          spans meeting cleanly.
+            连续性规则：
+            您可以调整边界以获得清晰度，但永远不要引入新的间隙或重叠。保留源时间线中的任何原始间隙，并保持相邻覆盖的跨度干净地相遇。
 
-            CORE DIRECTIVES:
-            - Theme Test Before Extending: Extend the current card only when the new observations continue the same dominant activity. Shifts shorter than 10 minutes should
-          be logged as distractions or merged into the adjacent segment that keeps the theme coherent; shifts ≥10 minutes become new cards.
+            核心指令：
+            - 扩展前主题测试：只有当新的观察继续相同的主导活动时才扩展当前卡片。少于10分钟的转换应该记录为分心或合并到保持主题连贯的相邻片段中；≥10分钟的转换成为新卡片。
         
         \(promptSections.title)
 
@@ -662,18 +660,18 @@ final class GeminiDirectProvider: LLMProvider {
 
         \(promptSections.detailedSummary)
 
-        APP SITES (Website Logos)
-        Identify the main app or website used for each card and include an appSites object.
+        APP SITES (网站徽标)
+        识别每张卡片使用的主要应用或网站，并包含一个appSites对象。
 
-        Rules:
-        - primary: The canonical domain (or canonical product path) of the main app used in the card.
-        - secondary: Another meaningful app used during this session OR the enclosing app (e.g., browser), if relevant.
-        - Format: lower-case, no protocol, no query or fragments. Use product subdomains/paths when they are canonical (e.g., docs.google.com for Google Docs).
-        - Be specific: prefer product domains over generic ones (docs.google.com over google.com).
-        - If you cannot determine a secondary, omit it.
-        - Do not invent brands; rely on evidence from observations.
+        规则：
+        - primary: 卡片中使用的主要应用的规范域名（或规范产品路径）。
+        - secondary: 会话中使用的另一个有意义的应用或封闭应用（例如浏览器），如果相关的话。
+        - 格式：小写，无协议，无查询或片段。当它们是规范时使用产品子域/路径（例如，Google Docs使用docs.google.com）。
+        - 具体化：偏好产品域名而不是通用域名（docs.google.com而不是google.com）。
+        - 如果您无法确定次要应用，请省略它。
+        - 不要发明品牌；依赖观察中的证据。
 
-        Canonical examples:
+        规范示例：
         - Figma → figma.com
         - Notion → notion.so
         - Google Docs → docs.google.com
@@ -687,21 +685,21 @@ final class GeminiDirectProvider: LLMProvider {
         - Safari → apple.com/safari
         - Twitter/X → x.com
 
-        YOUR MENTAL MODEL (How to Decide):
-        Before making a decision, ask yourself these questions in order:
+        您的心理模型（如何决定）：
+        在做出决定之前，按顺序问自己这些问题：
 
-        What is the dominant theme of the current card?
-        Do the new observations continue or relate to this theme? If yes, extend the card.
-        Is this a brief (<5 min) and unrelated pivot? If yes, add it as a distraction to the current card and continue extending.
-        Is this a sustained shift in focus (>15 min) that represents a different activity category or goal? If yes, create a new card regardless of the current card's length.
+        当前卡片的主导主题是什么？
+        新的观察是否继续或关联这个主题？如果是，扩展卡片。
+        这是一个简短的（<5分钟）且无关的转换吗？如果是，将其作为分心添加到当前卡片并继续扩展。
+        这是一个持续的关注点转换（>15分钟），代表不同的活动类别或目标吗？如果是，无论当前卡片的长度如何都创建新卡片。
 
-        DISTRACTIONS:
-        A "distraction" is a brief (<5 min) and unrelated activity that interrupts the main theme of a card. Sustained activities (>5 min) are NOT distractions - they either belong to the current theme or warrant a new card. Don't label related sub-tasks as distractions.
+        分心：
+        "分心"是简短的（<5分钟）且与卡片主要主题无关的活动。持续的活动（>5分钟）不是分心 - 它们要么属于当前主题，要么需要新卡片。不要将相关的子任务标记为分心。
 
-        INPUTS:
-        Previous cards: \(existingCardsString)
-        New observations: \(transcriptText)
-        Return ONLY a JSON array with this EXACT structure:
+        输入：
+        之前的卡片：\(existingCardsString)
+        新的观察：\(transcriptText)
+        仅返回具有此精确结构的JSON数组：
 
                 [
                   {

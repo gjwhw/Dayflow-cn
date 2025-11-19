@@ -46,7 +46,7 @@ class GeminiAPIHelper {
             "contents": [
                 [
                     "parts": [
-                        ["text": "Please respond with exactly: Hi from Gemini!"]
+                        ["text": "请用确切的文本回复：来自Gemini的问候！"]
                     ]
                 ]
             ],

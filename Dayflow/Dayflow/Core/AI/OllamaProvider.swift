@@ -412,21 +412,21 @@ final class OllamaProvider: LLMProvider {
     }
     
     private func getSimpleFrameDescription(_ frame: FrameData, batchId: Int64?) async -> String? {
-        // Simple prompt focused on just describing what's happening
+        // 专注于描述当前情况的简单提示词
         let prompt = """
-        Describe what you see on this computer screen in 1-2 sentences.
-        Focus on: what application/site is open, what the user is doing, and any relevant details visible.
-        Be specific and factual.
-        
-        GOOD EXAMPLES:
-        ✓ "VS Code open with index.js file, writing a React component for user authentication."
-        ✓ "Gmail compose window writing email to client@company.com about project timeline."
-        ✓ "Slack conversation in #engineering channel discussing API rate limiting issues."
-        
-        BAD EXAMPLES:
-        ✗ "User is coding" (too vague)
-        ✗ "Looking at a website" (doesn't identify which site)
-        ✗ "Working on computer" (completely non-specific)
+        用1-2句话描述您在这台计算机屏幕上看到的内容。
+        重点关注：打开了什么应用/网站，用户在做什么，以及任何可见的相关细节。
+        要具体和实事求是。
+
+        良好示例：
+        ✓ "VS Code打开index.js文件，正在编写React组件用于用户认证。"
+        ✓ "Gmail撰写窗口正在给client@company.com写关于项目时间线的邮件。"
+        ✓ "Slack#工程频道对话，讨论API速率限制问题。"
+
+        错误示例：
+        ✗ "用户在编码"（太模糊）
+        ✗ "在看网站"（没有识别哪个网站）
+        ✗ "在电脑上工作"（完全不具体）
         """
         
         // Convert base64 data back to string (return nil if we can't decode)
@@ -607,7 +607,7 @@ final class OllamaProvider: LLMProvider {
 
     // Helper method for text-only requests
     private func callTextAPI(_ prompt: String, operation: String, expectJSON: Bool = false, batchId: Int64? = nil, maxRetries: Int = 3) async throws -> String {
-        let systemPrompt = expectJSON ? "You are a helpful assistant. Always respond with valid JSON." : "You are a helpful assistant."
+        let systemPrompt = expectJSON ? "您是一个有用的助手。总是用有效的JSON响应。" : "您是一个有用的助手。"
         
         let request = ChatRequest(
             model: savedModelId,
@@ -879,61 +879,61 @@ final class OllamaProvider: LLMProvider {
 
     private func checkShouldMerge(previousCard: ActivityCardData, newCard: ActivityCardData, batchId: Int64?) async throws -> (Bool, String) {
         let basePrompt = """
-        Look at these two consecutive activity periods and decide if they should be combined into one card.
+        查看这两个连续的活动周期，决定是否应该将它们合并为一张卡片。
 
-        Previous activity (\(previousCard.startTime) - \(previousCard.endTime)):
-        Title: \(previousCard.title)
-        Summary: \(previousCard.summary)
+        之前的活动（\(previousCard.startTime) - \(previousCard.endTime)）：
+        标题：\(previousCard.title)
+        摘要：\(previousCard.summary)
 
-        New activity (\(newCard.startTime) - \(newCard.endTime)):
-        Title: \(newCard.title)
-        Summary: \(newCard.summary)
+        新的活动（\(newCard.startTime) - \(newCard.endTime)）：
+        标题：\(newCard.title)
+        摘要：\(newCard.summary)
 
-        MERGE DECISION RULE:
-        The Golden Rule: When merged, they should tell one coherent story, not two different ones
+        合并决策规则：
+        黄金法则：当合并时，它们应该讲述一个连贯的故事，而不是两个不同的故事
 
-        MERGE ONLY IF:
-        ✓ Same project or closely related task
-        ✓ Not a context switch
-        ✓ You're 80%+ confident they're the same activity
+        仅在以下情况下合并：
+        ✓ 相同项目或密切相关的任务
+        ✓ 不是上下文切换
+        ✓ 您80%+确定它们是相同的活动
 
-        GOOD MERGING EXAMPLES:
-        ✓ MERGE: "Debugging auth flow in VS Code" + "Testing auth endpoints in Postman"
-          (Same exact auth bug work continuing, confidence: 0.95)
-        ✓ MERGE: "Writing Q3 report in Docs" + "Adding charts to Q3 report"
-          (Same document, natural progression, confidence: 0.92)
-        ✓ MERGE: "Refactoring UserProfile component" + "Testing UserProfile after refactor"
-          (Same component, testing what was just built, confidence: 0.91)
+        良好合并示例：
+        ✓ 合并："在VS Code中调试认证流程" + "在Postman中测试认证端点"
+          （相同的认证错误工作继续，置信度：0.95）
+        ✓ 合并："在Docs中编写Q3报告" + "为Q3报告添加图表"
+          （相同文档，自然进展，置信度：0.92）
+        ✓ 合并："重构UserProfile组件" + "重构后测试UserProfile"
+          （相同组件，测试刚刚构建的内容，置信度：0.91）
 
-        BAD MERGING EXAMPLES:
-        ✗ DON'T MERGE: "Debugging Dayflow timeline cards" + "Checking Twitter & Reddit"
-          (Work interrupted by social media = context switch, confidence: 0.4)
-        ✗ DON'T MERGE: "Fixed CORS bug in API" + "Started implementing user dashboard"
-          (Different features, even same project, confidence: 0.6)
-        ✗ DON'T MERGE: "Writing docs for API" + "Debugging API endpoints"
-          (Documentation vs. coding = different mental modes, confidence: 0.7)
-        ✗ DON'T MERGE: "Reviewing PR comments" + "Working on new feature"
-          (Review work vs. creation work, confidence: 0.5)
-        ✗ DON'T MERGE: "Python data analysis" + "Answering Slack messages"
-          (Deep work vs. communication, confidence: 0.3)
-        ✗ DON'T MERGE: "Researching React patterns" + "Implementing React component"
-          (Research/learning vs. actual coding, confidence: 0.8)
-        ✗ DON'T MERGE: "Email, Twitter, general browsing" + "More email and browsing"
-          (Too vague - what emails? what browsing?, confidence: 0.4)
+        错误合并示例：
+        ✗ 不合并："调试Dayflow时间线卡片" + "检查Twitter和Reddit"
+          （工作被社交媒体中断 = 上下文切换，置信度：0.4）
+        ✗ 不合并："修复API中的CORS错误" + "开始实现用户仪表板"
+          （不同功能，即使是相同项目，置信度：0.6）
+        ✗ 不合并："为API编写文档" + "调试API端点"
+          （文档vs编码 = 不同思维模式，置信度：0.7）
+        ✗ 不合并："审查PR评论" + "开发新功能"
+          （审查工作vs创作工作，置信度：0.5）
+        ✗ 不合并："Python数据分析" + "回复Slack消息"
+          （深度工作vs沟通，置信度：0.3）
+        ✗ 不合并："研究React模式" + "实现React组件"
+          （研究/学习vs实际编码，置信度：0.8）
+        ✗ 不合并："邮件、Twitter、一般浏览" + "更多邮件和浏览"
+          （太模糊 - 什么邮件？什么浏览？，置信度：0.4）
 
-        CONFIDENCE SCORING:
-        - 0.9-1.0: Same exact activity continuing (merge)
-        - 0.7-0.9: Related but slightly different (probably don't merge)
-        - 0.5-0.7: Somewhat related (don't merge)
-        - 0.0-0.5: Different activities (definitely don't merge)
+        置信度评分：
+        - 0.9-1.0：相同确切活动继续（合并）
+        - 0.7-0.9：相关但略有不同（可能不合并）
+        - 0.5-0.7：有些相关（不合并）
+        - 0.0-0.5：不同活动（绝对不合并）
 
-        Remember: You need 0.8+ confidence to merge!
+        记住：您需要0.8+置信度才能合并！
 
-        Return JSON:
+        返回JSON：
         {
-          "reason": "Brief explanation of your decision",
-          "combine": true or false,
-          "confidence": 0.0 to 1.0
+          "reason": "决策的简要解释",
+          "combine": true或false,
+          "confidence": 0.0到1.0
         }
         """
 
@@ -1342,35 +1342,35 @@ final class OllamaProvider: LLMProvider {
         let durationString = String(format: "%02d:%02d", durationMinutes, durationSeconds)
 
         let basePrompt = """
-        You have \(frameDescriptions.count) snapshots from a \(durationString) screen recording.
+        您有\(frameDescriptions.count)个来自\(durationString)屏幕录制的快照。
 
-        CRITICAL TASK: Group these snapshots into EXACTLY 2-5 coherent segments that collectively explain \(durationString) of activity. Brief interruptions (< 2 minutes) should be absorbed into the surrounding segment.
+        关键任务：将这些快照分成恰好2-5个连贯的片段，这些片段共同解释\(durationString)的活动。短暂的中断（< 2分钟）应该被吸收到周围的片段中。
 
         <thinking>
-        Draft how you'll group the snapshots before you answer. Decide where the natural breaks occur and ensure the full video is covered.
+        在回答之前起草您将如何分组这些快照。决定自然中断发生的位置并确保整个视频都被覆盖。
         </thinking>
 
-        Here are the snapshots (timestamp → description):
+        以下是快照（时间戳 → 描述）：
         \(formattedDescriptions)
 
-        Respond with a JSON object using this exact shape:
+        使用这个精确的形状返回JSON对象：
         {
-          "reasoning": "Use this space to think through how you're going to construct the segments",
+          "reasoning": "使用这个空间思考您将如何构建这些片段",
           "segments": [
             {
               "startTimestamp": "MM:SS",
               "endTimestamp": "MM:SS",
-              "description": "Natural language summary of what happened"
+              "description": "发生了什么的自然语言摘要"
             }
           ]
         }
 
-        HARD REQUIREMENTS:
-        - "segments" MUST contain between 2 and 5 items.
-        - Every timestamp must stay within 00:00 and \(durationString).
-        - Segments should cover at least 80% of the video (ideally 100%) without inventing events.
-        - Merge small gaps instead of creating tiny standalone segments.
-        - Never output additional text outside the JSON object.
+        硬性要求：
+        - "segments"必须包含2到5个项目。
+        - 每个时间戳必须在00:00和\(durationString)之间。
+        - 片段应该覆盖至少80%的视频（理想情况下100%）而不捏造事件。
+        - 合并小间隙而不是创建微小的独立片段。
+        - 永远不要在JSON对象之外输出额外的文本。
         """
 
         let maxAttempts = 2
