@@ -8,8 +8,13 @@ final class TimelapseStorageManager {
     private let queue = DispatchQueue(label: "com.dayflow.timelapse.purge", qos: .utility)
 
     private init() {
+        // 动态获取应用名称，确保不同版本使用不同的存储路径
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+                     Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ??
+                     "Dayflow"
+
         let appSupport = fileMgr.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        let path = appSupport.appendingPathComponent("Dayflow/timelapses", isDirectory: true)
+        let path = appSupport.appendingPathComponent("\(appName)/timelapses", isDirectory: true)
         root = path
         try? fileMgr.createDirectory(at: root, withIntermediateDirectories: true)
     }

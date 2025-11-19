@@ -31,9 +31,14 @@ actor VideoProcessingService {
     init() {
         self.temporaryDirectoryURL = fileManager.temporaryDirectory
 
+        // 动态获取应用名称，确保不同版本使用不同的存储路径
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+                     Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ??
+                     "Dayflow"
+
         // Create a persistent directory for timelapses within Application Support
         let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        self.persistentTimelapsesRootURL = appSupportURL.appendingPathComponent("Dayflow/timelapses", isDirectory: true)
+        self.persistentTimelapsesRootURL = appSupportURL.appendingPathComponent("\(appName)/timelapses", isDirectory: true)
 
         // Ensure the root timelapses directory exists
         do {

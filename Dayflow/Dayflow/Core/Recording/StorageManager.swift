@@ -307,8 +307,13 @@ final class StorageManager: StorageManaging, @unchecked Sendable {
         UserDefaultsMigrator.migrateIfNeeded()
         StoragePathMigrator.migrateIfNeeded()
 
+        // 动态获取应用名称，确保不同版本使用不同的存储路径
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+                     Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ??
+                     "Dayflow"
+
         let appSupport = fileMgr.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        let baseDir = appSupport.appendingPathComponent("Dayflow", isDirectory: true)
+        let baseDir = appSupport.appendingPathComponent(appName, isDirectory: true)
         let recordingsDir = baseDir.appendingPathComponent("recordings", isDirectory: true)
 
         // Ensure directories exist before opening database
