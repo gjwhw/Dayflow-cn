@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ATSApplicationFontsPath</key>
+	<string>.</string>
+	<key>CFBundleDisplayName</key>
+	<string>Dayflow Dev</string>
+	<key>CFBundleName</key>
+	<string>Dayflow Dev</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1.21-dev</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>teleportlabs.com.Dayflow.dev</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dayflow-dev</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>61-dev</string>
+	<key>NSScreenCaptureUsageDescription</key>
+	<string>Dayflow Dev uses screen access to create your timeline. Recordings stay on your Mac and you can pause or delete them anytime.</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<false/>
+	<key>SUAutomaticallyUpdate</key>
+	<false/>
+	<key>SUEnableAutomaticChecks</key>
+	<false/>
+	<key>SUEnableInstallerLauncherService</key>
+	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Nunito-VariableFont_wght.ttf</string>
+		<string>Nunito-Italic-VariableFont_wght.ttf</string>
+		<string>InstrumentSerif-Regular.ttf</string>
+		<string>InstrumentSerif-Italic.ttf</string>
+		<string>Figtree-VariableFont_wght.ttf</string>
+		<string>Figtree-Italic-VariableFont_wght.ttf</string>
+	</array>
+</dict>
+</plist>
