@@ -14,7 +14,7 @@ struct HowItWorksView: View {
     @State private var buttonsOpacity: Double = 0
     @State private var isHoveringGitHub: Bool = false
 
-    private let fullText = "How Dayflow Works"
+    private let fullText = "Dayflow如何工作"
     
     // Navigation callbacks
     var onBack: () -> Void
@@ -22,14 +22,14 @@ struct HowItWorksView: View {
 
     private let cards: [(icon: String, title: String, body: String)] = [
         ("OnboardingHow",
-         "Install and Forget",
-         "Dayflow takes periodic screen captures to understand what you're working on, all stored privately on your device. You can toggle this whenever you like."),
+         "安装即忘",
+         "Dayflow会定期截取屏幕以了解您正在做什么，所有内容都私密存储在您的设备上。您可以随时开启或关闭。"),
         ("OnboardingSecurity",
-         "Privacy by Default",
-         "Dayflow can run entirely on local AI models, which means your data never leaves your computer. You can also find the source code below - please consider giving it a star on Github!"),
+         "默认隐私保护",
+         "Dayflow完全可以运行在本地AI模型上，这意味着您的数据永远不会离开您的计算机。您还可以在下面找到源代码 - 请考虑在Github上给它一个星标！"),
         ("OnboardingUnderstanding",
-         "Understand your Day",
-         "Knows the difference between YouTube tutorials and YouTube rabbit holes. Dayflow actually gets what you're working on.")
+         "了解您的一天",
+         "区分YouTube教程和YouTube无底洞。Dayflow真正理解您在做什么。")
     ]
 
     var body: some View {
@@ -68,7 +68,7 @@ struct HowItWorksView: View {
                 HStack {
                     DayflowSurfaceButton(
                         action: onBack,
-                        content: { Text("Back").font(.custom("Nunito", size: 14)).fontWeight(.semibold) },
+                        content: { Text("返回").font(.custom("Nunito", size: 14)).fontWeight(.semibold) },
                         background: .white,
                         foreground: Color(red: 0.25, green: 0.17, blue: 0),
                         borderColor: .clear,
@@ -86,7 +86,7 @@ struct HowItWorksView: View {
                         content: {
                             HStack(spacing: 12) {
                                 Image("GithubIcon").resizable().aspectRatio(contentMode: .fit).frame(width: 20, height: 20).colorInvert()
-                                Text("Star Dayflow on GitHub").font(.custom("Nunito", size: 14)).fontWeight(.medium)
+                                Text("在GitHub上给Dayflow星标").font(.custom("Nunito", size: 14)).fontWeight(.medium)
                             }
                         },
                         background: Color(red: 0.25, green: 0.17, blue: 0),
@@ -102,7 +102,7 @@ struct HowItWorksView: View {
                     
                     DayflowSurfaceButton(
                         action: onNext,
-                        content: { Text("Next").font(.custom("Nunito", size: 14)).fontWeight(.semibold) },
+                        content: { Text("下一步").font(.custom("Nunito", size: 14)).fontWeight(.semibold) },
                         background: Color(red: 0.25, green: 0.17, blue: 0),
                         foreground: .white,
                         borderColor: .clear,

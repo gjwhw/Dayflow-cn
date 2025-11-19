@@ -17,7 +17,7 @@ struct OnboardingFlow: View {
     @State private var textOpacity: Double = 0
     @AppStorage("selectedLLMProvider") private var selectedProvider: String = "gemini" // Persist across sessions
     @EnvironmentObject private var categoryStore: CategoryStore
-    private let fullText = "Your day has a story. Uncover it with Dayflow."
+    private let fullText = "您的一天有一个故事。用Dayflow发现它。"
     
     @ViewBuilder
     var body: some View {
@@ -312,7 +312,7 @@ struct WelcomeView: View {
                         
                         DayflowSurfaceButton(
                             action: onStart,
-                            content: { Text("Start").font(.custom("Nunito", size: 16)).fontWeight(.semibold) },
+                            content: { Text("开始").font(.custom("Nunito", size: 16)).fontWeight(.semibold) },
                             background: Color(red: 0.25, green: 0.17, blue: 0),
                             foreground: .white,
                             borderColor: .clear,
@@ -384,11 +384,11 @@ struct CompletionView: View {
 
             // Title section
             VStack(spacing: 8) {
-                Text("You are ready to go!")
+                Text("您已准备就绪！")
                     .font(.custom("InstrumentSerif-Regular", size: 36))
                     .foregroundColor(.black.opacity(0.9))
                 
-                Text("Welcome to Dayflow! Let it run for about 30 minutes to gather enough data, then come back to explore your personalized timeline. If you have any issues, feature requests, or feedback please use the feedback tab. I would love to hear from you! ")
+                Text("欢迎使用Dayflow！让它运行约30分钟以收集足够的数据，然后回来探索您的个性化时间线。如果您有任何问题、功能请求或反馈，请使用反馈标签。我很想听到您的声音！")
                     .font(.custom("Nunito", size: 15))
                     .foregroundColor(.black.opacity(0.6))
                     .multilineTextAlignment(.center)
@@ -410,7 +410,7 @@ struct CompletionView: View {
                     onFinish()
                 },
                 content: { 
-                    Text("Start")
+                    Text("开始")
                         .font(.custom("Nunito", size: 16))
                         .fontWeight(.semibold) 
                 },

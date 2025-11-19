@@ -14,11 +14,11 @@ struct BugReportView: View {
     var body: some View {
         VStack(spacing: 36) {
             VStack(spacing: 16) {
-                Text("Thanks for using Dayflow")
+                Text("感谢使用Dayflow")
                     .font(.custom("InstrumentSerif-Regular", size: 40))
                     .foregroundColor(.black.opacity(0.9))
 
-                Text("Email works great if you want to drop a quick note, Discord if you want to join the community, and if you’d prefer to chat, find some time on my calendar - I’d love to dig into why Dayflow is or isn’t working well for you.")
+                Text("如果您想快速留言，邮件很有效；如果您想加入社区，Discord很合适；如果您想聊天，请在我的日历上找一些时间 - 我很想深入了解Dayflow对您来说为什么有效或无效。")
                     .font(.custom("Nunito", size: 16))
                     .foregroundColor(.black.opacity(0.65))
                     .multilineTextAlignment(.center)
@@ -27,7 +27,7 @@ struct BugReportView: View {
             }
             VStack(spacing: 24) {
                 VStack(spacing: 12) {
-                    Text("Reach out")
+                    Text("联系")
                         .font(.custom("Nunito", size: 14).weight(.medium))
                         .foregroundColor(.black.opacity(0.55))
                         .textCase(.uppercase)
@@ -40,7 +40,7 @@ struct BugReportView: View {
                                 HStack(spacing: 12) {
                                     Image(systemName: "envelope.fill")
                                         .font(.system(size: 18, weight: .semibold))
-                                    Text("Email Jerry")
+                                    Text("给Jerry发邮件")
                                         .font(.custom("Nunito", size: 16).weight(.semibold))
                                 }
                             },
@@ -62,7 +62,7 @@ struct BugReportView: View {
                                         .renderingMode(.original)
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 22, height: 18)
-                                    Text("Join Discord")
+                                    Text("加入Discord")
                                         .font(.custom("Nunito", size: 16).weight(.semibold))
                                 }
                             },
@@ -81,7 +81,7 @@ struct BugReportView: View {
                                 HStack(spacing: 12) {
                                     Image(systemName: "calendar.badge.clock")
                                         .font(.system(size: 18, weight: .semibold))
-                                    Text("Calendar")
+                                    Text("日历")
                                         .font(.custom("Nunito", size: 16).weight(.semibold))
                                 }
                             },
@@ -97,7 +97,7 @@ struct BugReportView: View {
                 }
 
                 VStack(spacing: 12) {
-                    Text("Quick utilities")
+                    Text("快速工具")
                         .font(.custom("Nunito", size: 14).weight(.medium))
                         .foregroundColor(.black.opacity(0.55))
                         .textCase(.uppercase)

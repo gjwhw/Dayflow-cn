@@ -44,7 +44,7 @@ struct OnboardingLLMSelectionView: View {
 
             VStack(spacing: 0) {
                 // Header
-                Text("Choose a way to run Dayflow")
+                Text("选择Dayflow的运行方式")
                     .font(.custom("InstrumentSerif-Regular", size: titleSize))
                     .multilineTextAlignment(.center)
                     .foregroundColor(.black.opacity(0.9))
@@ -78,12 +78,12 @@ struct OnboardingLLMSelectionView: View {
                 // Footer
                 HStack(spacing: 0) {
                     Group {
-                        Text("Not sure which to choose? ")
+                        Text("不确定选择哪个？ ")
                             .foregroundColor(.black.opacity(0.6))
-                        + Text("Bring your own keys is the easiest setup (30s).")
+                        + Text("使用自己的密钥是最简单的设置（30秒）。")
                             .fontWeight(.semibold)
                             .foregroundColor(.black.opacity(0.8))
-                        + Text(" You can switch at any time in the settings.")
+                        + Text(" 您可以随时在设置中切换。")
                             .foregroundColor(.black.opacity(0.6))
                     }
                     .font(.custom("Nunito", size: 14))
@@ -105,15 +105,15 @@ struct OnboardingLLMSelectionView: View {
             FlexibleProviderCard(
                 id: "ollama",
                 title: "Use local AI",
-                badgeText: "MOST PRIVATE",
+                badgeText: "最私密",
                 badgeType: .green,
                 icon: "desktopcomputer",
                 features: [
-                    ("100% private - everything's processed on your computer", true),
-                    ("Works completely offline", true),
-                    ("Significantly less intelligence", false),
-                    ("Requires the most setup", false),
-                    ("16GB+ of RAM recommended", false),
+                    ("100%私密 - 一切都在您的计算机上处理", true),
+                    ("完全离线工作", true),
+                    ("智能程度显著较低", false),
+                    ("需要最多的设置", false),
+                    ("建议16GB+内存", false),
                     ("Can be battery-intensive", false)
                 ],
                 isSelected: selectedProvider == "ollama",
@@ -140,14 +140,14 @@ struct OnboardingLLMSelectionView: View {
             FlexibleProviderCard(
                 id: "gemini",
                 title: "Bring your own API keys",
-                badgeText: "RECOMMENDED",
+                badgeText: "推荐",
                 badgeType: .orange,
                 icon: "key.fill",
                 features: [
-                    ("Utilizes more intelligent AI via Google's Gemini models", true),
-                    ("Uses Gemini's generous free tier (no credit card needed)", true),
-                    ("Faster, more accurate than local models", true),
-                    ("Requires getting an API key (takes 2 clicks)", false)
+                    ("通过Google的Gemini模型使用更智能的AI", true),
+                    ("使用Gemini的慷慨免费层（无需信用卡）", true),
+                    ("比本地模型更快、更准确", true),
+                    ("需要获取API密钥（点击2次即可）", false)
                 ],
                 isSelected: selectedProvider == "gemini",
                 buttonMode: .onboarding(onProceed: {

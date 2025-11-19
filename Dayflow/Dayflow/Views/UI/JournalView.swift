@@ -3,7 +3,7 @@ import SwiftUI
 struct JournalView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Journal")
+            Text("日志")
                 .font(.custom("InstrumentSerif-Regular", size: 42))
                 .foregroundColor(.black)
                 .padding(.leading, 10) // Match Timeline header inset
@@ -21,12 +21,12 @@ struct JournalView: View {
 
                 // Centered white rectangle overlay
                 VStack(spacing: 10) {
-                    Text("This feature is in development. Reach out via the feedback tab if you want to be the first to beta test it!")
+                    Text("此功能正在开发中。如果您想成为第一个测试它的用户，请通过反馈标签联系我们！")
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
 
-                    Text("A narrative overview of how you spent your day, highlighting focus blocks, key apps and sites, context switches, and distractions; perfect for reflection or sharing.")
+                    Text("关于您如何度 过一天的叙述性概述，突出专注时间段、关键应用程序和网站、上下文切换和干扰；非常适合反思或分享。")
                         .font(.system(size: 13))
                         .foregroundColor(Color.black.opacity(0.8))
                         .multilineTextAlignment(.center)

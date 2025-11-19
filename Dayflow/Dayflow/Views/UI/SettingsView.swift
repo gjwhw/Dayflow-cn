@@ -19,17 +19,17 @@ struct SettingsView: View {
 
         var title: String {
             switch self {
-            case .storage: return "Storage"
-            case .providers: return "Providers"
-            case .other: return "Other"
+            case .storage: return "存储"
+            case .providers: return "提供商"
+            case .other: return "其他"
             }
         }
 
         var subtitle: String {
             switch self {
-            case .storage: return "Recording status and disk usage"
-            case .providers: return "Manage LLM providers and customize prompts"
-            case .other: return "General preferences & support"
+            case .storage: return "录制状态和磁盘使用情况"
+            case .providers: return "管理LLM提供商和自定义提示"
+            case .other: return "通用首选项和支持"
             }
         }
     }
@@ -239,12 +239,12 @@ struct SettingsView: View {
 
     private var sidebar: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text("Settings")
+            Text("设置")
                 .font(.custom("InstrumentSerif-Regular", size: 42))
                 .foregroundColor(.black.opacity(0.9))
                 .padding(.leading, 10)
 
-            Text("Manage how Dayflow runs")
+            Text("管理Dayflow的运行方式")
                 .font(.custom("Nunito", size: 14))
                 .foregroundColor(.black.opacity(0.55))
                 .padding(.leading, 10)
@@ -329,16 +329,16 @@ struct SettingsView: View {
 
     private var storageContent: some View {
         VStack(alignment: .leading, spacing: 28) {
-            SettingsCard(title: "Recording Status", subtitle: "Ensure Dayflow can capture your screen") {
+            SettingsCard(title: "录制状态", subtitle: "确保Dayflow可以捕获您的屏幕") {
                 VStack(alignment: .leading, spacing: 14) {
                     HStack(spacing: 12) {
                         statusPill(icon: storagePermissionGranted == true ? "checkmark.circle.fill" : "exclamationmark.triangle.fill",
                                    tint: storagePermissionGranted == true ? Color(red: 0.35, green: 0.7, blue: 0.32) : Color(hex: "E91515"),
-                                   text: storagePermissionGranted == true ? "Screen recording permission granted" : "Screen recording permission missing")
+                                   text: storagePermissionGranted == true ? "屏幕录制权限已授予" : "缺少屏幕录制权限")
 
                         statusPill(icon: AppState.shared.isRecording ? "dot.radiowaves.left.and.right" : "pause.circle",
                                    tint: AppState.shared.isRecording ? Color(hex: "FF7506") : Color.black.opacity(0.25),
-                                   text: AppState.shared.isRecording ? "Recorder active" : "Recorder idle")
+                                   text: AppState.shared.isRecording ? "录制器正在运行" : "录制器空闲")
                     }
 
                     HStack(spacing: 12) {
@@ -349,7 +349,7 @@ struct SettingsView: View {
                                     if isRefreshingStorage {
                                         ProgressView().scaleEffect(0.75)
                                     }
-                                    Text(isRefreshingStorage ? "Checking…" : "Run status check")
+                                    Text(isRefreshingStorage ? "检查中…" : "运行状态检查")
                                         .font(.custom("Nunito", size: 13))
                                         .fontWeight(.semibold)
                                 }
@@ -374,11 +374,11 @@ struct SettingsView: View {
                 }
             }
 
-            SettingsCard(title: "Disk usage", subtitle: "Open folders or adjust per-type storage caps") {
+            SettingsCard(title: "磁盘使用", subtitle: "打开文件夹或调整各类存储上限") {
                 VStack(alignment: .leading, spacing: 18) {
                     usageRow(
                         category: .recordings,
-                        label: "Recordings",
+                        label: "录制文件",
                         size: recordingsUsageBytes,
                         tint: Color(hex: "FF7506"),
                         limitIndex: recordingsLimitIndex,
@@ -388,7 +388,7 @@ struct SettingsView: View {
                     )
                     usageRow(
                         category: .timelapses,
-                        label: "Timelapses",
+                        label: "延时摄影",
                         size: timelapseUsageBytes,
                         tint: Color(hex: "1D7FFE"),
                         limitIndex: timelapsesLimitIndex,
@@ -527,7 +527,7 @@ struct SettingsView: View {
                     .padding(.horizontal, 4)
             }
 
-            SettingsCard(title: "Current configuration", subtitle: "Active provider and runtime details") {
+            SettingsCard(title: "当前配置", subtitle: "活跃提供商和运行时详情") {
                 VStack(alignment: .leading, spacing: 14) {
                     providerSummary
                     DayflowSurfaceButton(
@@ -535,7 +535,7 @@ struct SettingsView: View {
                         content: {
                             HStack(spacing: 8) {
                                 Image(systemName: "slider.horizontal.3")
-                                Text("Edit configuration")
+                                Text("编辑配置")
                                     .font(.custom("Nunito", size: 13))
                             }
                             .frame(minWidth: 160)
@@ -574,7 +574,7 @@ struct SettingsView: View {
                 }
             }
 
-            SettingsCard(title: "Connection health", subtitle: "Run a quick test for the active provider") {
+            SettingsCard(title: "连接健康", subtitle: "为活跃提供商运行快速测试") {
                 VStack(alignment: .leading, spacing: 16) {
                     Text(currentProvider == "gemini" ? "Gemini API" : "Local API")
                         .font(.custom("Nunito", size: 14))
@@ -608,7 +608,7 @@ struct SettingsView: View {
                 }
             }
 
-            SettingsCard(title: "Provider options", subtitle: "Switch providers at any time") {
+            SettingsCard(title: "提供商选项", subtitle: "随时切换提供商") {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         ForEach(providerCards, id: \.id) { card in
@@ -640,7 +640,7 @@ struct SettingsView: View {
 
     private var geminiPromptCustomizationView: some View {
         VStack(alignment: .leading, spacing: 22) {
-            Text("Overrides apply only when their toggle is on. Unchecked sections fall back to Dayflow's defaults.")
+            Text("覆盖设置仅在开关打开时生效。未勾选的部分将回退到Dayflow默认设置。")
                 .font(.custom("Nunito", size: 12))
                 .foregroundColor(.black.opacity(0.55))
                 .fixedSize(horizontal: false, vertical: true)
@@ -676,7 +676,7 @@ struct SettingsView: View {
                     content: {
                         HStack(spacing: 8) {
                             Image(systemName: "arrow.counterclockwise")
-                            Text("Reset to Dayflow defaults")
+                            Text("重置为Dayflow默认设置")
                                 .font(.custom("Nunito", size: 13))
                         }
                         .padding(.horizontal, 2)
@@ -695,7 +695,7 @@ struct SettingsView: View {
 
     private var ollamaPromptCustomizationView: some View {
         VStack(alignment: .leading, spacing: 22) {
-            Text("Customize the local model prompts for summary and title generation.")
+            Text("自定义本地模型提示词用于摘要和标题生成。")
                 .font(.custom("Nunito", size: 12))
                 .foregroundColor(.black.opacity(0.55))
                 .fixedSize(horizontal: false, vertical: true)
@@ -723,7 +723,7 @@ struct SettingsView: View {
                     content: {
                         HStack(spacing: 8) {
                             Image(systemName: "arrow.counterclockwise")
-                            Text("Reset to Dayflow defaults")
+                            Text("重置为Dayflow默认设置")
                                 .font(.custom("Nunito", size: 13))
                         }
                         .padding(.horizontal, 2)
@@ -847,8 +847,8 @@ struct SettingsView: View {
 
     private func providerDisplayName(_ id: String) -> String {
         switch id {
-        case "ollama": return "Use local AI"
-        case "gemini": return "Bring your own API keys"
+        case "ollama": return "使用本地AI"
+        case "gemini": return "使用自己的API密钥"
         case "dayflow": return "Dayflow Pro"
         default: return id.capitalized
         }
@@ -861,7 +861,7 @@ struct SettingsView: View {
             SettingsCard(title: "App preferences", subtitle: "General toggles and telemetry settings") {
                 VStack(alignment: .leading, spacing: 14) {
                     Toggle(isOn: $analyticsEnabled) {
-                        Text("Share crash reports and anonymous usage data")
+                        Text("分享崩溃报告和匿名使用数据")
                             .font(.custom("Nunito", size: 13))
                             .foregroundColor(.black.opacity(0.7))
                     }
@@ -1373,7 +1373,7 @@ struct SettingsView: View {
             switch localEngine {
             case .ollama: engineName = "Ollama"
             case .lmstudio: engineName = "LM Studio"
-            case .custom: engineName = "Custom"
+            case .custom: engineName = "自定义"
             }
             let displayModel = localModelId.isEmpty ? "qwen2.5vl:3b" : localModelId
             let truncatedModel = displayModel.count > 30 ? String(displayModel.prefix(27)) + "..." : displayModel
@@ -1472,7 +1472,7 @@ private struct LocalModelUpgradeBanner: View {
                 DayflowSurfaceButton(
                     action: onKeepLegacy,
                     content: {
-                        Text("Keep Qwen2.5").font(.custom("Nunito", size: 13)).fontWeight(.semibold)
+                        Text("保留Qwen2.5").font(.custom("Nunito", size: 13)).fontWeight(.semibold)
                     },
                     background: Color.white.opacity(0.12),
                     foreground: .white,
@@ -1486,7 +1486,7 @@ private struct LocalModelUpgradeBanner: View {
                     action: onUpgrade,
                     content: {
                         HStack(spacing: 6) {
-                            Text("Upgrade now").font(.custom("Nunito", size: 13)).fontWeight(.semibold)
+                            Text("立即升级").font(.custom("Nunito", size: 13)).fontWeight(.semibold)
                             Image(systemName: "arrow.right")
                                 .font(.system(size: 13, weight: .semibold))
                         }
@@ -1557,7 +1557,7 @@ private struct LocalModelUpgradeSheet: View {
                         Text("Upgrade to \(preset.displayName)")
                             .font(.custom("Nunito", size: 22))
                             .fontWeight(.semibold)
-                        Text("Follow the steps below, run a quick test, and Dayflow will switch you over automatically.")
+                        Text("按照以下步骤操作，运行快速测试，Dayflow将自动为您切换。")
                             .font(.custom("Nunito", size: 13))
                             .foregroundColor(.black.opacity(0.6))
                     }
@@ -1584,13 +1584,13 @@ private struct LocalModelUpgradeSheet: View {
                 }
 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Which local runtime are you using?")
+                    Text("您正在使用哪个本地运行时？")
                         .font(.custom("Nunito", size: 14))
                         .foregroundColor(.black.opacity(0.65))
                     Picker("Engine", selection: $selectedEngine) {
                         Text("Ollama").tag(LocalEngine.ollama)
                         Text("LM Studio").tag(LocalEngine.lmstudio)
-                        Text("Custom").tag(LocalEngine.custom)
+                        Text("自定义").tag(LocalEngine.custom)
                     }
                     .pickerStyle(.segmented)
                     .frame(maxWidth: 420)
@@ -1615,7 +1615,7 @@ private struct LocalModelUpgradeSheet: View {
                     }
                 )
 
-                Text("Once the test succeeds, Dayflow updates your settings to \(preset.displayName) automatically.")
+                Text("测试成功后，Dayflow会自动将您的设置更新为\(preset.displayName)。")
                     .font(.custom("Nunito", size: 12))
                     .foregroundColor(.black.opacity(0.55))
 
@@ -1624,7 +1624,7 @@ private struct LocalModelUpgradeSheet: View {
                     DayflowSurfaceButton(
                         action: onCancel,
                         content: {
-                            Text("Close").font(.custom("Nunito", size: 13)).fontWeight(.semibold)
+                            Text("关闭").font(.custom("Nunito", size: 13)).fontWeight(.semibold)
                         },
                         background: Color.white,
                         foreground: .black,
@@ -1787,15 +1787,15 @@ private enum StorageCategory {
 
     var analyticsKey: String {
         switch self {
-        case .recordings: return "recordings"
-        case .timelapses: return "timelapses"
+        case .recordings: return "录制文件"
+        case .timelapses: return "延时摄影"
         }
     }
 
     var displayName: String {
         switch self {
-        case .recordings: return "Recordings"
-        case .timelapses: return "Timelapses"
+        case .recordings: return "录制文件"
+        case .timelapses: return "延时摄影"
         }
     }
 }

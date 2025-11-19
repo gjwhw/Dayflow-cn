@@ -211,7 +211,7 @@ struct LLMProviderSetupView: View {
                                 .foregroundColor(.black.opacity(0.7))
                                 .frame(width: 20, alignment: .center)
                             
-                            Text("Back")
+                            Text("返回")
                                 .font(.custom("Nunito", size: 15))
                                 .fontWeight(.medium)
                                 .foregroundColor(.black.opacity(0.7))
@@ -228,7 +228,7 @@ struct LLMProviderSetupView: View {
                 
                 // Title in the content area
                 HStack {
-                    Text(activeProviderType == "ollama" ? "Use local AI" : "Bring your own API keys")
+                    Text(activeProviderType == "ollama" ? "使用本地AI" : "使用自己的API密钥")
                         .font(.custom("Nunito", size: 32))
                         .fontWeight(.semibold)
                         .foregroundColor(.black.opacity(0.9))
@@ -293,7 +293,7 @@ struct LLMProviderSetupView: View {
                 content: {
                     HStack(spacing: 8) {
                         Image(systemName: "checkmark.circle.fill").font(.system(size: 14))
-                        Text("Complete Setup").font(.custom("Nunito", size: 14)).fontWeight(.semibold)
+                        Text("完成设置").font(.custom("Nunito", size: 14)).fontWeight(.semibold)
                     }
                 },
                 background: Color(red: 0.25, green: 0.17, blue: 0),
@@ -336,11 +336,11 @@ struct LLMProviderSetupView: View {
         case .localChoice:
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Choose your local AI engine")
+                    Text("选择您的本地AI引擎")
                         .font(.custom("Nunito", size: 24))
                         .fontWeight(.semibold)
                         .foregroundColor(.black.opacity(0.9))
-                    Text("We strongly recommend LM Studio for the best reliability. Ollama is also supported, but tends to have more connection and timeout issues.")
+                    Text("我们强烈推荐LM Studio以获得最佳可靠性。也支持Ollama，但往往会有更多的连接和超时问题。")
                         .font(.custom("Nunito", size: 14))
                         .foregroundColor(.black.opacity(0.6))
                 }
