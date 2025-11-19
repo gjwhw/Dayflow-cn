@@ -361,7 +361,7 @@ fileprivate struct ColorSwatch: View {
                 .animation(.easeInOut(duration: 0.15), value: hovering)
 
             if showHint && hovering {
-                Text("Drag to category")
+                Text("拖拽到分类")
                     .font(.system(size: 11))
                     .foregroundColor(.white)
                     .padding(.vertical, 4)
@@ -443,7 +443,7 @@ fileprivate struct EditableCategoryCard: View {
 
             ZStack(alignment: .topLeading) {
                 if draftDetails.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    Text("Professional, school, or career-focused tasks (coding, design, meetings).")
+                    Text("专业、学校或职业相关的任务（编码、设计、会议）。")
                         .font(Font.custom("Nunito", size: 12).weight(.medium))
                         .foregroundColor(Color.black.opacity(0.35))
                         .padding(.horizontal, 12)
@@ -879,7 +879,7 @@ struct ColorOrganizerRoot: View {
                     .font(.system(size: 10, weight: .bold))
                     .foregroundColor(Color(red: 0.49, green: 0.33, blue: 0.16))
 
-                Text("Create a new category")
+                Text("创建新分类")
                     .font(Font.custom("Nunito", size: 14).weight(.bold))
                     .foregroundColor(Color(red: 0.49, green: 0.33, blue: 0.16))
             }

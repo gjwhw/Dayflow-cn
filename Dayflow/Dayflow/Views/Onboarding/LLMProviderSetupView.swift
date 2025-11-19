@@ -470,11 +470,11 @@ struct LLMProviderSetupView: View {
                     }
                 } else {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Use any OpenAI-compatible VLM")
+                        Text("使用任何OpenAI兼容的VLM")
                             .font(.custom("Nunito", size: 16))
                             .fontWeight(.semibold)
                             .foregroundColor(.black.opacity(0.85))
-                        Text("Make sure your server exposes the OpenAI Chat Completions API and has Qwen3-VL 4B (or Qwen2.5-VL 3B if you need the legacy model) installed.")
+                        Text("确保您的服务器暴露OpenAI聊天完成API并安装了Qwen3-VL 4B（如果您需要旧版本模型，也可以使用Qwen2.5-VL 3B）。")
                             .font(.custom("Nunito", size: 14))
                             .foregroundColor(.black.opacity(0.75))
                     }
@@ -509,7 +509,7 @@ struct LLMProviderSetupView: View {
                 )
 
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Choose your Gemini model. If you're on the free tier, pick 2.5 Pro, it's the most powerful model and is completely free to use. If you're on a paid plan, which is not recommended, I recommend 2.5 Flash-Lite to minimize costs.")
+                    Text("选择您的Gemini模型。如果您使用免费套餐，请选择2.5 Pro，它是最强大的模型且完全免费使用。如果您使用付费套餐（不推荐），我建议使用2.5 Flash-Lite以最小化成本。")
                         .font(.custom("Nunito", size: 16))
                         .fontWeight(.semibold)
                         .foregroundColor(.black.opacity(0.85))
@@ -538,12 +538,12 @@ struct LLMProviderSetupView: View {
         case .modelDownload(let command):
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Download the AI model")
+                    Text("下载AI模型")
                         .font(.custom("Nunito", size: 24))
                         .fontWeight(.semibold)
                         .foregroundColor(.black.opacity(0.9))
                     
-                    Text("This model enables Dayflow to understand what's on your screen")
+                    Text("此模型使Dayflow能够理解您屏幕上的内容")
                         .font(.custom("Nunito", size: 14))
                         .foregroundColor(.black.opacity(0.6))
                 }
@@ -577,8 +577,8 @@ struct LLMProviderSetupView: View {
                         // Additional guidance for the local intro step
                         if step.id == "intro" {
                             (
-                                Text("Advanced users can pick any ") +
-                                Text("vision-capable").fontWeight(.bold) +
+                                Text("高级用户可以选择任何 ") +
+                                Text("视觉能力").fontWeight(.bold) +
                                 Text(" LLM, but we strongly recommend using Qwen3-VL 4B based on our internal benchmarks.")
                             )
                             .font(.custom("Nunito", size: 14))
@@ -603,13 +603,13 @@ struct LLMProviderSetupView: View {
                             } else {
                                 // Engine selection: Ollama, LM Studio, Other
                                 VStack(alignment: .leading, spacing: 12) {
-                                    Text("Which tool are you using?")
+                                    Text("您正在使用哪个工具？")
                                         .font(.custom("Nunito", size: 14))
                                         .foregroundColor(.black.opacity(0.65))
                                     Picker("Engine", selection: $setupState.localEngine) {
                                         Text("LM Studio").tag(LocalEngine.lmstudio)
                                         Text("Ollama").tag(LocalEngine.ollama)
-                                        Text("Custom model").tag(LocalEngine.custom)
+                                        Text("自定义模型").tag(LocalEngine.custom)
                                     }
                                     .pickerStyle(.segmented)
                                     .frame(maxWidth: 380)
@@ -674,12 +674,12 @@ struct LLMProviderSetupView: View {
         case .apiKeyInstructions:
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Get your Gemini API key")
+                    Text("获取您的Gemini API密钥")
                         .font(.custom("Nunito", size: 24))
                         .fontWeight(.semibold)
                         .foregroundColor(.black.opacity(0.9))
                     
-                    Text("Google's Gemini offers a generous free tier that should allow you to run Dayflow 24/7 for free - no credit card required")
+                    Text("Google的Gemini提供慷慨的免费套餐，应该允许您免费24/7运行Dayflow - 无需信用卡")
                         .font(.custom("Nunito", size: 14))
                         .foregroundColor(.black.opacity(0.6))
                 }
@@ -692,7 +692,7 @@ struct LLMProviderSetupView: View {
                             .frame(width: 20, alignment: .leading)
                         
                         Group {
-                            Text("Visit Google AI Studio ")
+                            Text("访问Google AI Studio ")
                                 .font(.custom("Nunito", size: 14))
                                 .foregroundColor(.black.opacity(0.8))
                             + Text("(aistudio.google.com)")
@@ -710,7 +710,7 @@ struct LLMProviderSetupView: View {
                             .foregroundColor(.black.opacity(0.6))
                             .frame(width: 20, alignment: .leading)
                         
-                        Text("Click \"Get API key\" in the top right")
+                        Text("在右上角点击"获取API密钥"")
                             .font(.custom("Nunito", size: 14))
                             .foregroundColor(.black.opacity(0.8))
                     }
@@ -721,7 +721,7 @@ struct LLMProviderSetupView: View {
                             .foregroundColor(.black.opacity(0.6))
                             .frame(width: 20, alignment: .leading)
                         
-                        Text("Create a new API key and copy it")
+                        Text("创建一个新的API密钥并复制它")
                             .font(.custom("Nunito", size: 14))
                             .foregroundColor(.black.opacity(0.8))
                     }
@@ -735,7 +735,7 @@ struct LLMProviderSetupView: View {
                         content: {
                             HStack(spacing: 8) {
                                 Image(systemName: "safari").font(.system(size: 14))
-                                Text("Open Google AI Studio").font(.custom("Nunito", size: 14)).fontWeight(.semibold)
+                                Text("打开Google AI Studio").font(.custom("Nunito", size: 14)).fontWeight(.semibold)
                             }
                         },
                         background: Color(red: 0.25, green: 0.17, blue: 0),
@@ -932,38 +932,38 @@ class ProviderSetupState: ObservableObject {
             steps = [
                 SetupStep(
                     id: "intro",
-                    title: "Before you begin",
+                    title: "开始之前",
                     contentType: .information(
-                        "For experienced users",
-                        "This path is recommended only if you're comfortable running LLMs locally and debugging technical issues. If terms like vLLM or API endpoint don't ring a bell, we recommend going back and picking 'Bring your own API keys'. It's non-technical and takes about 30 seconds.\n\nFor local mode, Dayflow recommends Qwen3-VL 4B as the core vision-language model (Qwen2.5-VL 3B remains available if you need a smaller download)."
+                        "为有经验的用户",
+                        "仅推荐在您习惯本地运行LLM并调试技术问题时使用此路径。如果vLLM或API端点等术语对您来说很陌生，我们建议您返回并选择'使用自己的API密钥'。那是非常简单的，只需要约30秒。\n\n对于本地模式，Dayflow推荐Qwen3-VL 4B作为核心视觉语言模型（如果您需要更小的下载，Qwen2.5-VL 3B仍然可用）。"
                     )
                 ),
-                SetupStep(id: "choose", title: "Choose engine", contentType: .localChoice),
-                SetupStep(id: "model", title: "Install model", contentType: .localModelInstall),
-                SetupStep(id: "test", title: "Test connection", contentType: .information("Test Connection", "Click the button below to verify your local server responds to a simple chat completion.")),
-                SetupStep(id: "complete", title: "Complete", contentType: .information("All set!", "Local AI is configured and ready to use with Dayflow."))
+                SetupStep(id: "choose", title: "选择引擎", contentType: .localChoice),
+                SetupStep(id: "model", title: "安装模型", contentType: .localModelInstall),
+                SetupStep(id: "test", title: "测试连接", contentType: .information("测试连接", "点击下面的按钮以验证您的本地服务器是否响应简单的聊天完成请求。")),
+                SetupStep(id: "complete", title: "完成", contentType: .information("全部完成！", "本地AI已配置并准备好与Dayflow一起使用。"))
             ]
         case "chatgpt_claude":
             steps = [
                 SetupStep(
                     id: "intro",
-                    title: "Before you begin",
+                    title: "开始之前",
                     contentType: .information(
-                        "Install ChatGPT or Claude",
-                        "Dayflow can drive either ChatGPT (through the Codex CLI) or Claude Code. You'll need at least one installed and signed in on this Mac. We'll check automatically in the next step."
+                        "安装ChatGPT或Claude",
+                        "Dayflow可以驱动ChatGPT（通过Codex CLI）或Claude Code。您需要在此Mac上安装并登录至少一个。我们会在下一步自动检查。"
                     )
                 ),
                 SetupStep(
                     id: "detect",
-                    title: "Check installations",
+                    title: "检查安装",
                     contentType: .cliDetection
                 ),
                 SetupStep(
                     id: "complete",
-                    title: "Complete",
+                    title: "完成",
                     contentType: .information(
-                        "All set!",
-                        "ChatGPT and Claude tooling is ready. You can fine-tune which assistant to use anytime from Settings → AI Provider."
+                        "全部完成！",
+                        "ChatGPT和Claude工具已准备就绪。您可以随时从设置 → AI提供商调整使用哪个助手。"
                     )
                 )
             ]
@@ -980,14 +980,14 @@ class ProviderSetupState: ObservableObject {
             cliPrompt = "Say hello"
         default: // gemini
             steps = [
-                SetupStep(id: "getkey", title: "Get API key",
+                SetupStep(id: "getkey", title: "获取API密钥",
                           contentType: .apiKeyInstructions),
-                SetupStep(id: "enterkey", title: "Enter API key",
+                SetupStep(id: "enterkey", title: "输入API密钥",
                           contentType: .apiKeyInput),
-                SetupStep(id: "verify", title: "Test connection",
-                          contentType: .information("Test Connection", "Click the button below to verify your API key works with Gemini")),
-                SetupStep(id: "complete", title: "Complete",
-                          contentType: .information("All set!", "Gemini is now configured and ready to use with Dayflow."))
+                SetupStep(id: "verify", title: "测试连接",
+                          contentType: .information("测试连接", "点击下面的按钮以验证您的API密钥是否与Gemini一起工作")),
+                SetupStep(id: "complete", title: "完成",
+                          contentType: .information("全部完成！", "Gemini现已配置并准备好与Dayflow一起使用。"))
             ]
         }
     }
@@ -1359,7 +1359,7 @@ struct LocalLLMTestView: View {
         VStack(alignment: .leading, spacing: 12) {
             if showInputs {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Base URL")
+                    Text("基础URL")
                         .font(.custom("Nunito", size: 13))
                         .foregroundColor(.black.opacity(0.6))
                     TextField(basePlaceholder ?? engine.defaultBaseURL, text: $baseURL)
@@ -1367,7 +1367,7 @@ struct LocalLLMTestView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Model ID")
+                    Text("模型ID")
                         .font(.custom("Nunito", size: 13))
                         .foregroundColor(.black.opacity(0.6))
                     TextField(modelPlaceholder ?? LocalModelPreferences.defaultModelId(for: engine), text: $modelId)
@@ -1376,13 +1376,13 @@ struct LocalLLMTestView: View {
 
                 if engine == .custom {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("API key (optional)")
+                        Text("API密钥（可选）")
                             .font(.custom("Nunito", size: 13))
                             .foregroundColor(.black.opacity(0.6))
                         SecureField("sk-live-...", text: $apiKey)
                             .textFieldStyle(.roundedBorder)
                             .disableAutocorrection(true)
-                        Text("Stored locally in UserDefaults and sent as a Bearer token for custom endpoints (LiteLLM, OpenRouter, etc.)")
+                        Text("在UserDefaults中本地存储，并作为Bearer token发送给自定义端点（LiteLLM、OpenRouter等）")
                             .font(.custom("Nunito", size: 11))
                             .foregroundColor(.black.opacity(0.5))
                     }
@@ -1420,7 +1420,7 @@ struct LocalLLMTestView: View {
                     .foregroundColor(success ? .black.opacity(0.7) : Color(hex: "E91515"))
                     .padding(.vertical, 6)
                 if !success {
-                    Text("If you get stuck here, you can go back and choose the ‘Bring your own key’ option — it only takes a minute to set up.")
+                    Text("如果您在这里卡住了，可以返回并选择"使用自己的密钥"选项 - 设置只需要一分钟。")
                         .font(.custom("Nunito", size: 12))
                         .foregroundColor(.black.opacity(0.55))
                         .padding(.top, 2)
@@ -1729,11 +1729,11 @@ struct ChatCLIDetectionStepView<NextButton: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Check ChatGPT or Claude")
+                Text("检查ChatGPT或Claude")
                     .font(.custom("Nunito", size: 24))
                     .fontWeight(.semibold)
                     .foregroundColor(.black.opacity(0.9))
-                Text("Dayflow can talk to ChatGPT (via the Codex CLI) or Claude Code. You only need one installed and signed in on this Mac.")
+                Text("Dayflow可以与ChatGPT（通过Codex CLI）或Claude Code对话。您只需要在此Mac上安装并登录其中一个。")
                     .font(.custom("Nunito", size: 14))
                     .foregroundColor(.black.opacity(0.6))
             }
@@ -1755,7 +1755,7 @@ struct ChatCLIDetectionStepView<NextButton: View>: View {
                 )
             }
             
-            Text("Tip: Once both are installed, you can choose which assistant Dayflow uses from Settings → AI Provider.")
+            Text("提示：一旦两个都安装了，您可以从设置 → AI提供商选择Dayflow使用哪个助手。")
                 .font(.custom("Nunito", size: 12))
                 .foregroundColor(.black.opacity(0.5))
             
@@ -1769,7 +1769,7 @@ struct ChatCLIDetectionStepView<NextButton: View>: View {
             )
             
             VStack(alignment: .leading, spacing: 12) {
-                Text("Try a sample prompt")
+                Text("尝试示例提示")
                     .font(.custom("Nunito", size: 13))
                     .fontWeight(.semibold)
                     .foregroundColor(.black.opacity(0.7))
@@ -2092,11 +2092,11 @@ struct DebugCommandConsole: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Run a command as Dayflow")
+            Text("作为Dayflow运行命令")
                 .font(.custom("Nunito", size: 13))
                 .fontWeight(.semibold)
                 .foregroundColor(.black.opacity(0.7))
-            Text("Helpful for checking PATH differences. We run using the same environment as the detection step.")
+            Text("有助于检查PATH差异。我们使用与检测步骤相同的环境运行。")
                 .font(.custom("Nunito", size: 12))
                 .foregroundColor(.black.opacity(0.55))
             HStack(spacing: 10) {

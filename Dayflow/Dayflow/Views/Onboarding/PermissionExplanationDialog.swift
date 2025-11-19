@@ -21,20 +21,20 @@ struct PermissionExplanationDialog: View {
                 .cornerRadius(12)
             
             // Title
-            Text("Permission Required")
+            Text("需要权限")
                 .font(.custom("Nunito", size: 24))
                 .fontWeight(.bold)
                 .foregroundColor(.black.opacity(0.9))
             
             // Explanation
             VStack(spacing: 12) {
-                Text("macOS will ask for screen recording permission to enable activity tracking.")
+                Text("macOS会要求屏幕录制权限以启用活动跟踪。")
                     .font(.custom("Nunito", size: 15))
                     .foregroundColor(.black.opacity(0.7))
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
                 
-                Text("Your privacy is guaranteed: All recordings stay on your Mac. With local AI models, even processing happens on-device. Nothing leaves your computer.")
+                Text("您的隐私得到保证：所有录制内容都保存在您的Mac上。使用本地AI模型时，甚至处理也在设备上进行。没有任何内容离开您的计算机。")
                     .font(.custom("Nunito", size: 14))
                     .foregroundColor(.black.opacity(0.6))
                     .multilineTextAlignment(.center)
@@ -47,7 +47,7 @@ struct PermissionExplanationDialog: View {
                 Button(action: {
                     isPresented = false
                 }) {
-                    Text("Cancel")
+                    Text("取消")
                         .font(.custom("Nunito", size: 16))
                         .fontWeight(.medium)
                         .foregroundColor(.black.opacity(0.6))
@@ -66,7 +66,7 @@ struct PermissionExplanationDialog: View {
                         onProceed()
                     }
                 }) {
-                    Text("Grant Permission")
+                    Text("授予权限")
                         .font(.custom("Nunito", size: 16))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)

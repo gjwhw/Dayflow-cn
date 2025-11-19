@@ -206,7 +206,7 @@ struct SettingsView: View {
         .alert(isPresented: $showLimitConfirmation) {
             guard let pending = pendingLimit,
                   Self.storageOptions.indices.contains(pending.index) else {
-                return Alert(title: Text("Adjust storage limit"), dismissButton: .default(Text("OK")))
+                return Alert(title: Text("调整存储限制"), dismissButton: .default(Text("确定")))
             }
 
             let option = Self.storageOptions[pending.index]
@@ -214,7 +214,7 @@ struct SettingsView: View {
             return Alert(
                 title: Text("Lower \(categoryName) limit?"),
                 message: Text("Reducing the \(categoryName) limit to \(option.label) will immediately delete the oldest \(categoryName) data to stay under the new cap."),
-                primaryButton: .destructive(Text("Confirm")) {
+                primaryButton: .destructive(Text("确认")) {
                     applyLimit(for: pending.category, index: pending.index)
                 },
                 secondaryButton: .cancel {
@@ -265,7 +265,7 @@ struct SettingsView: View {
                     NotificationCenter.default.post(name: .showWhatsNew, object: nil)
                 } label: {
                     HStack(spacing: 6) {
-                        Text("View release notes")
+                        Text("查看更新日志")
                         Image(systemName: "arrow.up.right")
                             .font(.system(size: 11, weight: .medium))
                     }
@@ -600,7 +600,7 @@ struct SettingsView: View {
                         )
                     } else {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Dayflow Pro diagnostics coming soon")
+                            Text("Dayflow Pro诊断即将推出")
                                 .font(.custom("Nunito", size: 13))
                                 .foregroundColor(.black.opacity(0.55))
                         }
@@ -1447,7 +1447,7 @@ private struct LocalModelUpgradeBanner: View {
                         .font(.custom("Nunito", size: 16))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
-                    Text("Upgrade to Qwen3VL for a big improvement in quality.")
+                    Text("升级到Qwen3VL以大幅提升质量。")
                         .font(.custom("Nunito", size: 13))
                         .foregroundColor(.white.opacity(0.8))
                 }
@@ -1730,7 +1730,7 @@ private struct GeminiModelSettingsCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Gemini model")
+            Text("Gemini模型")
                 .font(.custom("Nunito", size: 13))
                 .fontWeight(.semibold)
                 .foregroundColor(Color(red: 0.25, green: 0.17, blue: 0))
@@ -1748,7 +1748,7 @@ private struct GeminiModelSettingsCard: View {
                 .font(.custom("Nunito", size: 12))
                 .foregroundColor(.black.opacity(0.5))
 
-            Text("Dayflow automatically downgrades if your chosen model is rate limited or unavailable.")
+            Text("如果您选择的模型受到速率限制或不可用，Dayflow会自动降级。")
                 .font(.custom("Nunito", size: 11))
                 .foregroundColor(.black.opacity(0.45))
         }
