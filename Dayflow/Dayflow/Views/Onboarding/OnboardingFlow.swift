@@ -213,14 +213,14 @@ struct OnboardingFlow: View {
                     do {
                         // Verify we have permission
                         _ = try await SCShareableContent.excludingDesktopWindows(false, onScreenWindowsOnly: true)
-                        // Start recording
+                        // 开始录制
                         await MainActor.run {
                             AppState.shared.isRecording = true
                         }
                     } catch {
-                        // Permission not granted yet, that's ok
-                        // It will start after restart
-                        print("Will start recording after restart")
+                        // 尚未授予权限，这没关系
+                        // 重启后会开始录制
+                        print("重启后将开始录制")
                     }
                 }
             }
@@ -231,7 +231,7 @@ struct OnboardingFlow: View {
     }
     
     private func requestScreenPerm() async throws {
-        _ = try await SCShareableContent.current                 // triggers prompt
+        _ = try await SCShareableContent.current                 // 触发权限请求
     }
 }
 
@@ -397,7 +397,7 @@ struct CompletionView: View {
             
             // Referral survey replaces the static preview
             ReferralSurveyView(
-                prompt: "I have a small favor to ask. I'd love to understand where you first heard about Dayflow.",
+                prompt: "我想请您帮个小忙。我想了解您是从哪里第一次听说Dayflow的。",
                 showSubmitButton: false,
                 selectedReferral: $referralSelection,
                 customReferral: $referralDetail

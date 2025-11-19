@@ -78,7 +78,7 @@ final class AnalysisManager: AnalysisManaging {
             let overallStartTime = Date()
             var batchTimings: [(batchId: Int64, duration: TimeInterval)] = []
             
-            DispatchQueue.main.async { progressHandler("Preparing to reprocess day \(day)...") }
+            DispatchQueue.main.async { progressHandler("准备重新处理\(day)号天...") }
             
             // 1. Delete existing timeline cards and get video paths to clean up
             let videoPaths = self.store.deleteTimelineCards(forDay: day)
@@ -123,7 +123,7 @@ final class AnalysisManager: AnalysisManaging {
                 let elapsedTotal = Date().timeIntervalSince(overallStartTime)
                 
                 DispatchQueue.main.async { 
-                    progressHandler("Processing batch \(index + 1) of \(batchIds.count)... (Total elapsed: \(self.formatDuration(elapsedTotal)))")
+                    progressHandler("正在处理批次\(index + 1)/\(batchIds.count)...（总耗时：\(self.formatDuration(elapsedTotal))")
                 }
                 
                 // Use a semaphore to wait for each batch to complete
@@ -131,10 +131,10 @@ final class AnalysisManager: AnalysisManaging {
                 
                 self.queueGeminiRequest(batchId: batchId)
                 
-                // Wait for batch to complete (check status periodically)
+                // 等待批次完成（定期检查状态）
                 var isCompleted = false
                 while !isCompleted && !hasError {
-                    Thread.sleep(forTimeInterval: 2.0) // Check every 2 seconds
+                    Thread.sleep(forTimeInterval: 2.0) // 每2秒检查一次
                     
                     let currentBatches = self.store.fetchBatches(forDay: day)
                     if let batch = currentBatches.first(where: { $0.id == batchId }) {
@@ -154,7 +154,7 @@ final class AnalysisManager: AnalysisManaging {
                             let batchDuration = Date().timeIntervalSince(batchStartTime)
                             batchTimings.append((batchId: batchId, duration: batchDuration))
                             DispatchQueue.main.async {
-                                progressHandler("⚠️ Batch \(index + 1) ended with status '\(batch.status)' after \(self.formatDuration(batchDuration))")
+                                progressHandler("⚠️ 批次\(index + 1)以状态'\(batch.status)'结束，耗时\(self.formatDuration(batchDuration))")
                             }
                         case "processing":
                             // Still processing, continue waiting
@@ -207,7 +207,7 @@ final class AnalysisManager: AnalysisManaging {
             let overallStartTime = Date()
             var batchTimings: [(batchId: Int64, duration: TimeInterval)] = []
             
-            DispatchQueue.main.async { progressHandler("Preparing to reprocess \(batchIds.count) selected batches...") }
+            DispatchQueue.main.async { progressHandler("准备重新处理选中的\(batchIds.count)个批次...") }
             
             let allBatches = self.store.allBatches()
             let existingBatchIds = Set(allBatches.map { $0.id })
@@ -236,12 +236,12 @@ final class AnalysisManager: AnalysisManaging {
             let batchesToProcess = orderedBatchIds.filter { resetBatchIdSet.contains($0) }
 
             guard !batchesToProcess.isEmpty else {
-                DispatchQueue.main.async { progressHandler("No eligible batches found to reprocess.") }
-                completion(.failure(NSError(domain: "AnalysisManager", code: 4, userInfo: [NSLocalizedDescriptionKey: "No eligible batches found to reprocess"])))
+                DispatchQueue.main.async { progressHandler("未找到符合条件的批次进行处理。") }
+                completion(.failure(NSError(domain: "AnalysisManager", code: 4, userInfo: [NSLocalizedDescriptionKey: "未找到符合条件的批次进行处理"])))
                 return
             }
 
-            DispatchQueue.main.async { progressHandler("Processing \(batchesToProcess.count) batches...") }
+            DispatchQueue.main.async { progressHandler("正在处理 \(batchesToProcess.count) 个批次...") }
 
             // Process batches
             var processedCount = 0
@@ -253,16 +253,16 @@ final class AnalysisManager: AnalysisManaging {
                 let batchStartTime = Date()
                 let elapsedTotal = Date().timeIntervalSince(overallStartTime)
                 
-                DispatchQueue.main.async { 
-                    progressHandler("Processing batch \(index + 1) of \(batchesToProcess.count)... (Total elapsed: \(self.formatDuration(elapsedTotal)))")
+                DispatchQueue.main.async {
+                    progressHandler("正在处理第 \(index + 1) 个批次，共 \(batchesToProcess.count) 个... (总耗时: \(self.formatDuration(elapsedTotal)))")
                 }
                 
                 self.queueGeminiRequest(batchId: batchId)
                 
-                // Wait for batch to complete (check status periodically)
+                // 等待批次完成（定期检查状态）
                 var isCompleted = false
                 while !isCompleted && !hasError {
-                    Thread.sleep(forTimeInterval: 2.0) // Check every 2 seconds
+                    Thread.sleep(forTimeInterval: 2.0) // 每2秒检查一次
                     
                     let allBatches = self.store.allBatches()
                     if let batch = allBatches.first(where: { $0.id == batchId }) {
@@ -282,7 +282,7 @@ final class AnalysisManager: AnalysisManaging {
                             let batchDuration = Date().timeIntervalSince(batchStartTime)
                             batchTimings.append((batchId: batchId, duration: batchDuration))
                             DispatchQueue.main.async {
-                                progressHandler("⚠️ Batch \(index + 1) ended with status '\(batch.status)' after \(self.formatDuration(batchDuration))")
+                                progressHandler("⚠️ 批次\(index + 1)以状态'\(batch.status)'结束，耗时\(self.formatDuration(batchDuration))")
                             }
                         case "processing":
                             // Still processing, continue waiting
@@ -386,7 +386,7 @@ final class AnalysisManager: AnalysisManaging {
             let now = Date()
             let currentDayInfo = now.getDayInfoFor4AMBoundary()
             let currentLogicalDayString = currentDayInfo.dayString
-            print("Processing batch \(batchId) for logical day: \(currentLogicalDayString)")
+            print("正在为逻辑日处理批次 \(batchId): \(currentLogicalDayString)")
 
             switch result {
             case .success(let processedResult):
@@ -409,8 +409,8 @@ final class AnalysisManager: AnalysisManaging {
                 print("✅ DEBUG: Duplicate check complete\n")
                 
                 guard let firstChunk = chunksInBatch.first else {
-                    print("Error: No chunks found for batch \(batchId) during timestamp conversion")
-                    self.markBatchFailed(batchId: batchId, reason: "No chunks found for timestamp conversion")
+                    print("错误：批次 \(batchId) 在时间戳转换期间未找到数据块")
+                    self.markBatchFailed(batchId: batchId, reason: "时间戳转换期间未找到数据块")
                     return
                 }
                 let firstChunkStartDate = Date(timeIntervalSince1970: TimeInterval(firstChunk.startTs))
@@ -441,13 +441,13 @@ final class AnalysisManager: AnalysisManaging {
                         )
 
                         if chunks.isEmpty {
-                            print("No chunks found for timeline card \(cardId) [\(timelineCard.startTimestamp) - \(timelineCard.endTimestamp)]")
+                            print("时间线卡片 \(cardId) [\(timelineCard.startTimestamp) - \(timelineCard.endTimestamp)] 未找到数据块")
                             continue
                         }
 
                         do {
-                            print("Generating timelapse for card \(cardId): '\(timelineCard.title)' [\(timelineCard.startTimestamp) - \(timelineCard.endTimestamp)]")
-                            print("  Found \(chunks.count) chunks in time range")
+                            print("正在为卡片 \(cardId) 生成延时摄影: '\(timelineCard.title)' [\(timelineCard.startTimestamp) - \(timelineCard.endTimestamp)]")
+                            print("  在时间范围内找到 \(chunks.count) 个数据块")
 
                             // Convert chunks to URLs
                             let chunkURLs = chunks.compactMap { URL(fileURLWithPath: $0.fileUrl) }
@@ -474,19 +474,19 @@ final class AnalysisManager: AnalysisManaging {
                             DispatchQueue.global(qos: .utility).async { [store = self.store] in
                                 store.updateTimelineCardVideoURL(cardId: cardId, videoSummaryURL: videoPath)
                             }
-                            print("✅ Generated timelapse for card \(cardId): \(videoPath)")
+                            print("✅ 已为卡片 \(cardId) 生成延时摄影: \(videoPath)")
 
                             // Cleanup temp file
                             await self.videoProcessingService.cleanupTemporaryFile(at: stitchedVideo)
                         } catch {
-                            print("❌ Error generating timelapse for card \(cardId): \(error)")
+                            print("❌ 为卡片 \(cardId) 生成延时摄影时出错: \(error)")
                         }
                     }
-                    print("✅ Timelapse generation complete for batch \(batchId)")
+                    print("✅ 批次 \(batchId) 的延时摄影生成完成")
                 }
 
             case .failure(let err):
-                print("LLM failed for Batch \(batchId). Day \(currentLogicalDayString) may have been cleared. Error: \(err.localizedDescription)")
+                print("批次 \(batchId) 的LLM处理失败。逻辑日 \(currentLogicalDayString) 可能已被清除。错误: \(err.localizedDescription)")
 
                 // Finish performance transaction - LLM processing failed
                 transaction.finish(status: .internalError)

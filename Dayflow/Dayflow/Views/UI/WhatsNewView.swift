@@ -33,10 +33,10 @@ let releaseNotes: [ReleaseNote] = [
         version: currentAppVersion,
         title: "感谢成为Dayflow的早期用户！这是应用的第一个主要更新 - 非常感谢所有花时间发送反馈的人。",
         highlights: [
-            "Huge UI refresh - Dayflow should feel much more pleasant on the eyes.",
-            "Added ability to retry a failed timeline card. (Much requested feature!)",
-            "Fixed a lot of bugs with timeline card generation and recording - thank you to everyone who submitted a bug report.",
-            "Please keep the feedback coming - I would love to hear from you, whether it's just to say you enjoy a particular feature, have a feature request, or see any issues using the app!"
+            "巨大的UI更新 - Dayflow 现在应该感觉更加舒适。",
+            "增加了重试失败时间线卡片的功能。（这是一个非常受期待的功能！）",
+            "修复了大量时间线卡片生成和录制的错误 - 感谢所有提交错误报告的人。",
+            "请继续提供反馈 - 我很想听到您的声音，无论只是说您喜欢某个功能，有功能请求，还是在使用应用时发现任何问题！"
         ],
         imageName: nil
     ),
@@ -107,7 +107,7 @@ struct WhatsNewView: View {
             Divider()
 
             ReferralSurveyView(
-                prompt: "I have a small favor to ask. I'd love to understand where you first heard about Dayflow.",
+                prompt: "我想请您帮个小忙。我想了解您是从哪里第一次听说Dayflow的。",
                 onSubmit: handleReferralSubmission
             )
         }

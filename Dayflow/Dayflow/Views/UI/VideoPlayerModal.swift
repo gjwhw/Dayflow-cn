@@ -2,7 +2,7 @@
 //  VideoPlayerModal.swift
 //  Dayflow
 //
-//  Custom video timeline player with activity segments
+//  带活动片段的自定义视频时间线播放器
 //
 
 import SwiftUI
@@ -158,16 +158,16 @@ class VideoPlayerViewModel: ObservableObject {
     }
     
     private func loadSegments() {
-        // Dummy data for now
+        // 目前为虚拟数据
         segments = [
             VideoSegment(title: "与Chat GPT头脑风暴", startTime: 0, endTime: 420, color: .orange, activityType: .brainstorming),
-            VideoSegment(title: "Browsing TripAdvisor", startTime: 420, endTime: 660, color: .red, activityType: .browsing),
-            VideoSegment(title: "Comparing flights", startTime: 660, endTime: 780, color: .blue, activityType: .other("travel")),
-            VideoSegment(title: "Break", startTime: 780, endTime: 840, color: .yellow, activityType: .breaks),
-            VideoSegment(title: "Email responses", startTime: 840, endTime: 1020, color: .blue, activityType: .email),
-            VideoSegment(title: "Coding session", startTime: 1020, endTime: 1680, color: .orange, activityType: .coding),
-            VideoSegment(title: "Research", startTime: 1680, endTime: 1980, color: .orange, activityType: .brainstorming),
-            VideoSegment(title: "Planning", startTime: 1980, endTime: duration, color: .blue, activityType: .other("planning"))
+            VideoSegment(title: "浏览TripAdvisor", startTime: 420, endTime: 660, color: .red, activityType: .browsing),
+            VideoSegment(title: "比较航班", startTime: 660, endTime: 780, color: .blue, activityType: .other("旅行")),
+            VideoSegment(title: "休息", startTime: 780, endTime: 840, color: .yellow, activityType: .breaks),
+            VideoSegment(title: "回复邮件", startTime: 840, endTime: 1020, color: .blue, activityType: .email),
+            VideoSegment(title: "编程会话", startTime: 1020, endTime: 1680, color: .orange, activityType: .coding),
+            VideoSegment(title: "研究", startTime: 1680, endTime: 1980, color: .orange, activityType: .brainstorming),
+            VideoSegment(title: "规划", startTime: 1980, endTime: duration, color: .blue, activityType: .other("规划"))
         ]
     }
 }

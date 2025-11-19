@@ -127,8 +127,8 @@ final class LLMService: LLMServicing {
             let processingStartTime = Date()
 
             do {
-                print("\n📦 [LLMService] Processing batch \(batchId)")
-                print("   Batch time: \(Date(timeIntervalSince1970: TimeInterval(batchStartTs))) to \(Date(timeIntervalSince1970: TimeInterval(batchEndTs)))")
+                print("\n📦 [LLMService] 正在处理批次 \(batchId)")
+                print("   批次时间: \(Date(timeIntervalSince1970: TimeInterval(batchStartTs))) 到 \(Date(timeIntervalSince1970: TimeInterval(batchEndTs)))")
 
                 // Track analysis batch started
                 await AnalyticsService.shared.capture("analysis_batch_started", [
@@ -342,7 +342,7 @@ final class LLMService: LLMServicing {
                 completion(.success(ProcessedBatchResult(cards: cards, cardIds: insertedCardIds)))
                 
             } catch {
-                print("Error processing batch: \(error)")
+                print("处理批次时出错: \(error)")
                 if let ns = error as NSError?, ns.domain == "GeminiError" {
                     print("🔎 GEMINI DEBUG: NSError.userInfo=\(ns.userInfo)")
                 }

@@ -165,7 +165,7 @@ final class CategoryStore: ObservableObject {
 
     private func catDescription(_ category: TimelineCategory) -> String? {
         if category.isIdle {
-            return "Mark sessions where the user is idle for more than half of the time."
+            return "标记用户超过一半时间处于空闲状态的会话"
         }
         let trimmed = category.details.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty ? nil : trimmed
@@ -199,7 +199,7 @@ extension CategoryStore {
                     name: category.name,
                     description: {
                         if category.isIdle {
-                            return "Use when the user is idle for more than half of this period."
+                            return "当用户在这段时间内超过一半时间空闲时使用"
                         }
                         let trimmed = category.details.trimmingCharacters(in: .whitespacesAndNewlines)
                         return trimmed.isEmpty ? nil : trimmed
@@ -258,32 +258,32 @@ enum CategoryPersistence {
         let now = Date()
         let base: [(String, String, Bool, Bool, String)] = [
             (
-                "Work",
+                "工作",
                 "#B984FF",
                 false,
                 false,
-                "Career, school, or productivity-focused activities (projects, emails, assignments, video calls, learning skills, etc.)"
+                "职业、学校或生产力相关活动（项目、邮件、作业、视频通话、学习技能等）"
             ),
             (
-                "Personal",
+                "个人",
                 "#6AADFF",
                 false,
                 false,
-                "Purposeful non-work activities or life tasks (paying bills, fitness tracking, meal planning, personal research, creative hobbies, etc.)"
+                "有目的的非工作活动或生活任务（支付账单、健身追踪、膳食规划、个人研究、创意爱好等）"
             ),
             (
-                "Distraction",
+                "分心",
                 "#FF5950",
                 false,
                 false,
-                "Passive consumption or aimless browsing (scrolling feeds, watching random videos, clicking through news, mindless games, etc.)"
+                "被动消费或无目的浏览（滚动信息流、观看随机视频、点击新闻、无意识游戏等）"
             ),
             (
-                "Idle",
+                "空闲",
                 "#A0AEC0",
                 true,
                 true,
-                "For when the user is idle for most of the time."
+                "用于用户大部分时间处于空闲状态。"
             )
         ]
         return base.enumerated().map { idx, entry in
@@ -310,9 +310,9 @@ enum CategoryPersistence {
         let order = (categories.map { $0.order }.max() ?? -1) + 1
         let now = Date()
         let idle = TimelineCategory(
-            name: "Idle",
+            name: "空闲",
             colorHex: "#A0AEC0",
-            details: "Mark sessions where the user is idle for most of the time.",
+            details: "用于标记用户大部分时间处于空闲状态的会话。",
             order: order,
             isSystem: true,
             isIdle: true,
