@@ -710,7 +710,7 @@ struct LLMProviderSetupView: View {
                             .foregroundColor(.black.opacity(0.6))
                             .frame(width: 20, alignment: .leading)
                         
-                        Text("在右上角点击"获取API密钥"")
+                        Text("在右上角点击\"获取API密钥\"")
                             .font(.custom("Nunito", size: 14))
                             .foregroundColor(.black.opacity(0.8))
                     }
@@ -1420,7 +1420,7 @@ struct LocalLLMTestView: View {
                     .foregroundColor(success ? .black.opacity(0.7) : Color(hex: "E91515"))
                     .padding(.vertical, 6)
                 if !success {
-                    Text("如果您在这里卡住了，可以返回并选择"使用自己的密钥"选项 - 设置只需要一分钟。")
+                    Text("如果您在这里卡住了，可以返回并选择\"使用自己的密钥\"选项 - 设置只需要一分钟。")
                         .font(.custom("Nunito", size: 12))
                         .foregroundColor(.black.opacity(0.55))
                         .padding(.top, 2)

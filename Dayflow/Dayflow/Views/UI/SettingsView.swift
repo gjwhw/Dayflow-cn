@@ -555,7 +555,7 @@ struct SettingsView: View {
                                 HStack(spacing: 6) {
                                     Image(systemName: usingRecommendedLocalModel ? "slider.horizontal.2.square" : "arrow.up.circle.fill")
                                         .font(.system(size: 14))
-                                    Text(usingRecommendedLocalModel ? "Manage local model" : "Upgrade local model")
+                                    Text(usingRecommendedLocalModel ? "管理本地模型" : "升级本地模型")
                                         .font(.custom("Nunito", size: 13))
                                         .fontWeight(.semibold)
                                 }
