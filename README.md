@@ -1,20 +1,22 @@
+# Dayflow 中文版 - 您的AI工作日记录助手
 
 <div align="center">
-  <img src="docs/images/dayflow_header.png" alt="Dayflow" width="400">
+  <img src="docs/images/dayflow_header.png" alt="Dayflow CN" width="400">
 </div>
 
 <div align="center">
-  <em>A timeline of your day, automatically.</em><br>
-  Turns your screen activity into a clean timeline with AI summaries and distraction highlights.
+  <em>自动生成您的工作日时间线</em><br>
+  通过AI分析屏幕活动，生成包含智能摘要和干扰提醒的清晰时间线
 </div>
 
 <div align="center">
   <!-- Badges -->
   <img src="https://img.shields.io/badge/macOS-13%2B-000?logo=apple" alt="Platform: macOS 13+">
   <img src="https://img.shields.io/badge/SwiftUI-✓-orange" alt="SwiftUI">
-  <img src="https://img.shields.io/badge/Updates-Sparkle-informational" alt="Updates: Sparkle">
-  <img src="https://img.shields.io/badge/AI-Gemini%20or%20Local-blue" alt="AI: Gemini / Local">
+  <img src="https://img.shields.io/badge/更新-Sparkle-informational" alt="Updates: Sparkle">
+  <img src="https://img.shields.io/badge/AI-Gemini%20或%20本地模型-blue" alt="AI: Gemini / Local">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License: MIT">
+  <img src="https://img.shields.io/badge/语言-中文%20本地化-red" alt="Language: Chinese Localized">
 </div>
 
 <div align="center">
@@ -23,92 +25,92 @@
 
 <div align="center">
   <a href="https://github.com/JerryZLiu/Dayflow/releases/latest">
-    <img src="https://img.shields.io/badge/Download%20for%20Mac-⬇%20%20Dayflow.dmg-blue?style=for-the-badge&logo=apple" alt="Download for Mac">
+    <img src="https://img.shields.io/badge/下载%20Mac%20版-⬇%20%20Dayflow%20CN.dmg-blue?style=for-the-badge&logo=apple" alt="Download Dayflow CN for Mac">
   </a>
 </div>
 
 <p align="center">
-  <a href="#quickstart">Quickstart</a> •
-  <a href="#why-i-built-dayflow">Why I built Dayflow</a> •
-  <a href="#features">Features</a> •
-  <a href="#how-it-works">How it works</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#data--privacy">Data & Privacy</a> •
-  <a href="#automation">Automation</a> •
-  <a href="#debug--developer-tools">Debug & Developer Tools</a> •
-  <a href="#auto-updates-sparkle">Auto‑updates</a> •
-  <a href="#contributing">Contributing</a>
+  <a href="#dayflow是什么">功能介绍</a> •
+  <a href="#为什么选择中文版">中文版特色</a> •
+  <a href="#主要功能">核心功能</a> •
+  <a href="#工作原理">技术原理</a> •
+  <a href="#安装使用">安装指南</a> •
+  <a href="#数据隐私">隐私保护</a> •
+  <a href="#自动化集成">自动化集成</a> •
+  <a href="#开发调试">开发工具</a> •
+  <a href="#项目结构">代码结构</a> •
+  <a href="#贡献指南">参与贡献</a>
 </p>
 
 ---
 
-## What is Dayflow?
+## Dayflow 是什么？
 
-Dayflow is a **native macOS app** (SwiftUI) that records your screen at **1 FPS**, analyzes it **every 15 minutes** with AI, and generates a **timeline** of your activities with summaries. 
-It's lightweight (25MB app size) and uses ~100MB of RAM and <1% cpu. 
+Dayflow 是一款**原生 macOS 应用**（SwiftUI），以 **1 FPS** 录制屏幕，**每15分钟**用AI分析一次，生成您工作活动的**智能时间线**。
 
-> _Privacy‑minded by design_: You choose your AI provider. Use **Gemini** (bring your own API key) or **local models** (Ollama / LM Studio). See **Data & Privacy** for details.
+应用轻量级（25MB），仅需约100MB内存和<1%的CPU。
 
+> _隐私优先设计_：您可以选择AI提供商。使用**Gemini**（自带API密钥）或**本地模型**（Ollama / LM Studio）。详见**数据隐私**部分。
 
-## Why I built Dayflow
+## 为什么选择中文版？
 
-I built Dayflow after realizing that my calendar wasn't the source of truth for how I actually spent my time. My screen was. I wanted a calm, trustworthy timeline that let me see my workday without turning into yet another dashboard I had to maintain.
+Dayflow 中文版在原版基础上进行了全面的本地化优化：
 
-Dayflow stands for ownership and privacy by default. You control the data, you choose the AI provider, and you can keep everything local if that's what makes you comfortable. It's MIT licensed and fully open source because anything that watches your screen all day should be completely transparent about what it does with that information. The app should feel like a quiet assistant: respectful of your attention, honest about what it captures, and easy to shut off.
+### 🇨🇳 完整中文化
+- **界面全中文**：所有UI元素、菜单、设置均已中文化
+- **AI提示词优化**：针对中文使用场景优化了AI分析提示词
+- **符合中文习惯**：时间显示、活动分类更贴近中国用户习惯
 
+### 🚀 本土化增强
+- **更好的中文理解**：AI分析更准确地理解中文应用和内容
+- **本地化体验**：支持中文应用名称和软件分类识别
+- **持续优化**：专门针对中文用户的使用反馈进行改进
 
 ---
 
-## Features
+## 主要功能
 
-- **Automatic timeline** of your day with concise summaries.
-- **1 FPS recording** - minimal CPU/storage impact.
-- **15-minute analysis intervals** for timely updates.
-- **Watch timelapses of your day**.
-- **Auto storage cleanup** - removes old recordings after 3 days.
-- **Distraction highlights** to see what pulled you off‑task.
-- **Native UX** built with **SwiftUI**.
-- **Auto‑updates** with **Sparkle** (daily check + background download).
+- **智能时间线**：自动生成您的工作日时间线和活动摘要
+- **低资源占用**：1 FPS录制，最小化CPU和存储影响
+- **定时分析**：每15分钟分析一次，及时更新活动状态
+- **工作日回放**：观看您一天工作的快进视频
+- **自动清理**：3天后自动删除旧录制文件
+- **干扰提醒**：识别并标记让您分心的事项
+- **原生体验**：使用 **SwiftUI** 构建的原生 macOS 应用
+- **自动更新**：集成 **Sparkle** 框架，自动检查和下载更新
 
-### Coming soon
+### 即将推出
 
-- **Infinitely customizable dashboard** — ask any question about your workday, pipe the answers into tiles you arrange yourself, and track trends over time.
+- **个性化仪表板** — 自定义问题追踪工作日效率，可视化趋势分析
+- **每日工作日志** — 回顾AI捕获的精彩瞬间，引导反思和记录
 
-  <div align="center">
-    <img src="docs/images/DashboardPreview.png" alt="Dayflow dashboard preview" width="800">
-  </div>
+---
 
-- **Daily journal** — review the highlights Dayflow captured, reflect with guided prompts, and drop screenshots or notes alongside your generated timeline.
+## 工作原理
 
-  <div align="center">
-    <img src="docs/images/JournalPreview.png" alt="Dayflow journal preview" width="800">
-  </div>
+1) **录制** — 以1 FPS录制屏幕，按15秒分块存储
+2) **分析** — 每15分钟将最近录像发送给AI分析
+3) **生成** — AI创建包含活动摘要的时间线卡片
+4) **展示** — 以可视化时间线展示您的一天
+5) **清理** — 自动删除3天前的录制文件
 
-## How it works
+### AI 处理流程
 
-1) **Capture** — Records screen at 1 FPS in 15-second chunks.
-2) **Analyze** — Every 15 minutes, sends recent footage to AI.
-3) **Generate** — AI creates timeline cards with activity summaries.
-4) **Display** — Shows your day as a visual timeline.
-5) **Cleanup** — Auto-deletes recordings older than 3 days.
-
-### AI Processing Pipeline
-
-The efficiency of your timeline generation depends on your chosen AI provider:
+不同AI提供商的处理效率：
 
 ```mermaid
 flowchart LR
-    subgraph Gemini["Gemini Flow: 2 LLM Calls"]
+    subgraph Gemini["Gemini 流程: 2次 LLM 调用"]
         direction LR
-        GV[Video] --> GU[Upload + Transcribe<br/>1 LLM call] --> GC[Generate Cards<br/>1 LLM call] --> GD[Done]
+        GV[视频] --> GU[上传 + 转述<br/>1次 LLM 调用] --> GC[生成卡片<br/>1次 LLM 调用] --> GD[完成]
     end
 
-    subgraph Local["Local Flow: 33+ LLM Calls"]
+    subgraph Local["本地模型流程: 33+次 LLM 调用"]
         direction LR
-        LV[Video] --> LE[Extract 30 frames] --> LD[30 descriptions<br/>30 LLM calls] --> LM[Merge<br/>1 call] --> LT[Title<br/>1 call] --> LC[Merge Check<br/>1 call] --> LMC[Merge Cards<br/>1 call] --> LD2[Done]
+        LV[视频] --> LE[提取30帧] --> LD[30个描述<br/>30次 LLM 调用] --> LM[合并<br/>1次调用] --> LT[标题<br/>1次调用] --> LC[合并检查<br/>1次调用] --> LMC[合并卡片<br/>1次调用] --> LD2[完成]
     end
 
-    %% Styling
+    %% 样式
     classDef geminiFlow fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
     classDef localFlow fill:#fff8e1,stroke:#ff9800,stroke-width:2px
     classDef geminiStep fill:#4caf50,color:#fff
@@ -124,197 +126,178 @@ flowchart LR
     class GD,LD2 result
 ```
 
-**Gemini** leverages native video understanding for direct analysis, while **Local models** reconstruct understanding from individual frame descriptions - resulting in dramatically different processing complexity.
-
-
----
-
-## Quickstart
-
-**Download (end users)**
-1. Grab the latest `Dayflow.dmg` from **GitHub Releases**.
-2. Open the app; grant **Screen & System Audio Recording** when prompted:  
-   macOS → **System Settings** → **Privacy & Security** → **Screen & System Audio Recording** → enable **Dayflow**.
-
-<div align="center">
-  <a href="https://github.com/JerryZLiu/Dayflow/releases/latest">
-    <img src="https://img.shields.io/badge/Download%20for%20Mac-⬇%20%20Dayflow.dmg-blue?style=for-the-badge&logo=apple" alt="Download the latest Dayflow.dmg">
-  </a>
-</div>
-
-**Build from source (developers)**
-1. Install **Xcode 15+** and open `Dayflow.xcodeproj`.
-2. Run the `Dayflow` scheme on macOS 13+.
-3. In your Run **scheme**, add your `GEMINI_API_KEY` under _Arguments > Environment Variables_ (if using Gemini).
+**Gemini** 利用原生视频理解能力直接分析，**本地模型**通过分析单帧描述重建理解 — 处理复杂度差异显著。
 
 ---
 
-## Installation
+## 安装使用
 
-### Requirements
+### 系统要求
 - macOS **13.0+**
-- Xcode **15+**
-- A **Gemini API key** (if using Gemini): https://ai.google.dev/gemini-api/docs/api-key
+- Xcode **15+**（开发环境）
+- **Gemini API密钥**（如使用Gemini）：https://ai.google.dev/gemini-api/docs/api-key
 
-### From Releases
-1. Download `Dayflow.dmg` and drag **Dayflow** into **Applications**.
-2. Launch and grant the **Screen & System Audio Recording** permission.
+### 安装方式
+
+#### 📦 下载安装（推荐用户）
+1. 从 **GitHub Releases** 下载最新的 `Dayflow_CN.dmg`
+2. 打开应用，授予**屏幕和系统音频录制**权限：
+   macOS → **系统设置** → **隐私与安全性** → **屏幕和系统音频录制** → 启用 **Dayflow CN**
 
 <div align="center">
   <a href="https://github.com/JerryZLiu/Dayflow/releases/latest">
-    <img src="https://img.shields.io/badge/Download%20for%20Mac-⬇%20%20Dayflow.dmg-blue?style=for-the-badge&logo=apple" alt="Download the latest Dayflow.dmg">
+    <img src="https://img.shields.io/badge/下载%20中文版-⬇%20%20Dayflow%20CN.dmg-blue?style=for-the-badge&logo=apple" alt="下载最新的 Dayflow CN.dmg">
   </a>
 </div>
 
-### From source
-```bash
-git clone https://github.com/JerryZLiu/Dayflow.git
-cd Dayflow
-open Dayflow.xcodeproj
-# In Xcode: select the Dayflow target, configure signing if needed, then Run.
-```
+#### 🔧 从源码构建（开发者）
+1. 安装 **Xcode 15+** 并打开 `Dayflow.xcodeproj`
+2. 在 macOS 13+ 上运行 `Dayflow` scheme
+3. 在运行 **scheme** 的环境变量中添加您的 `GEMINI_API_KEY`（如果使用Gemini）
 
-### Homebrew
-
-If you are using [Homebrew](https://brew.sh/), you can install [Dayflow](https://formulae.brew.sh/cask/dayflow) with:
-
+#### 🍺 通过 Homebrew
 ```bash
 $ brew install --cask dayflow
 ```
 
 ---
 
-## Data & Privacy
+## 数据隐私
 
-This section explains **what Dayflow stores locally**, **what leaves your machine**, and **how provider choices affect privacy**.
+本部分说明 **Dayflow 本地存储的内容**、**哪些数据会离开您的机器**，以及**不同提供商选择对隐私的影响**。
 
-### Data locations (on your Mac)
+### 本地数据位置
 
-The `Dayflow` folder that contains most of your information is likely in one of two places:
+Dayflow 数据夹通常位于以下位置之一：
 1. `~/Library/Application Support/Dayflow/`
-2. `~Library/Containers/teleportlabs.com.Dayflow/Data/Library/Application Support/Dayflow/`
+2. `~/Library/Containers/teleportlabs.com.Dayflow/Data/Library/Application Support/Dayflow/`
 
-The former is most likely, the latter is if the app has been installed in a "sandbox" of container, The below paths and files should be created when the app is first launched.
+前者是常见位置，后者是应用在沙盒容器中的情况。首次启动时会创建以下路径和文件：
 
-- **Recordings (video chunks):** `Dayflow/recordings/` (or choose "Open Recordings..." from the Dayflow Taskbar Icon Menu)
-- **Local database:** `Dayflow/chunks.sqlite`
-- **Recording details:** 1 FPS capture, analyzed every 15 minutes, 3-day retention
-- **Purge / reset tip:** Quit Dayflow. Then delete the entire `Dayflow/` folder to remove recordings and analysis artifacts. Relaunch to start fresh.
+- **录制文件（视频块）：** `Dayflow/recordings/` 或从Dayflow菜单栏图标选择"打开录制文件夹"
+- **本地数据库：** `Dayflow/chunks.sqlite`
+- **录制详情：** 1 FPS捕获，每15分钟分析一次，3天保留期
+- **清理/重置提示：** 退出Dayflow。删除整个 `Dayflow/` 文件夹以移除录制和分析数据。重新启动以全新开始。
 
-### Processing modes & providers
-- **Gemini (cloud, BYO key)** — Dayflow sends batch payloads to **Google’s Gemini API** for analysis.
-- **Local models (Ollama / LM Studio)** — Processing stays **on‑device**; Dayflow talks to a **local server** you run.
+### 处理模式和提供商
+- **Gemini（云端，自带密钥）** — Dayflow将批量数据发送至 **Google Gemini API** 进行分析
+- **本地模型（Ollama / LM Studio）** — 处理完全**在设备上进行**；Dayflow与您运行的**本地服务器**通信
 
-### TL;DR: Gemini data handling (my reading of Google’s ToS)
-- **Short answer: There is a way to prevent Google from training on your data.** If you **enable Cloud Billing** on **at least one** Gemini API project, Google treats **all of your Gemini API and Google AI Studio usage** under the **“Paid Services”** data‑use rules — **even when you’re using unpaid/free quota**. Under Paid Services, **Google does not use your prompts/responses to improve Google products/models**.  
-  - Terms: “When you activate a Cloud Billing account, all use of Gemini API and Google AI Studio is a ‘Paid Service’ with respect to how Google Uses Your Data, even when using Services that are offered free of charge.” ([Gemini API Additional Terms](https://ai.google.dev/gemini-api/terms#paid-services-how-google-uses-your-data))  
-  - Abuse monitoring: even under Paid Services, Google **logs prompts/responses for a limited period** for **policy enforcement and legal compliance**. ([Same Terms](https://ai.google.dev/gemini-api/terms#paid-services-how-google-uses-your-data))  
-  - **EEA/UK/Switzerland:** the **Paid‑style data handling applies by default** to **all Services** (including AI Studio and unpaid quota) **even without billing**. ([Same Terms](https://ai.google.dev/gemini-api/terms#unpaid-services-how-google-uses-your-data))
+### 简要说：Gemini数据处理（对Google ToS的理解）
+- **简短回答：有办法阻止Google使用您的数据进行训练。** 如果您**在至少一个Gemini API项目上启用Cloud Billing**，Google会根据"付费服务"数据使用规则处理**所有Gemini API和Google AI Studio使用**——**即使您使用免费/未付费配额**。在付费服务下，**Google不会使用您的提示/响应来改进Google产品/模型**。
+  - 条款："当您激活Cloud Billing账户时，所有Gemini API和Google AI Studio的使用在Google如何使用您的数据方面都是'付费服务'，即使在使用免费提供的服务时。" ([Gemini API附加条款](https://ai.google.dev/gemini-api/terms#paid-services-how-google-uses-your-data))
+  - 滥用监控：即使在付费服务下，Google也会**记录提示/响应有限时间**用于**政策执行和法律合规**。([相同条款](https://ai.google.dev/gemini-api/terms#paid-services-how-google-uses-your-data))
+  - **欧洲经济区/英国/瑞士：** **付费式数据处理默认适用于所有服务**（包括AI Studio和未付费配额）**即使没有计费**。([相同条款](https://ai.google.dev/gemini-api/terms#unpaid-services-how-google-uses-your-data))
 
-**A couple useful nuances** (from docs + forum clarifications):
-- **AI Studio is still free** to use; enabling billing changes **data handling**, not whether Studio charges you. ([Pricing page](https://ai.google.dev/gemini-api/docs/pricing))  
-- **UI “Plan: Paid” check:** In **AI Studio → API keys**, you’ll typically see “Plan: Paid” once billing is enabled on any linked project (UI may evolve).  
-- **Free workaround:** _“Make one project paid, keep using a free key elsewhere to get the best of both worlds.”_ The **Terms** imply **account‑level** coverage once any billing account is activated, but the **Apps** nuance above may limit this in specific UI contexts. **Treat this as an interpretation, not legal advice.**
-
-### Local mode: privacy & trade‑offs
-- **Privacy:** With **Ollama/LM Studio**, prompts and model inference run on your machine. LM Studio documents full **offline** operation once models are downloaded.  
-- **Quality/latency:** Local open models are improving but **can underperform** cloud models on complex summarization.  
-- **Power/battery:** Local inference is **GPU‑heavy** on Apple Silicon and will drain battery faster; prefer **plugged‑in** sessions for long captures.  
-- **Future:** We may explore **fine‑tuning** or distilling a local model for better timeline summaries.
-
-References:  
-- LM Studio offline: https://lmstudio.ai/docs/app/offline  
-- Ollama GPU acceleration (Metal on Apple): https://github.com/ollama/ollama/blob/main/docs/gpu.md
-
-### Permissions (macOS)
-To record your screen, Dayflow requires the **Screen & System Audio Recording** permission. Review or change later at:  
-**System Settings → Privacy & Security → Screen & System Audio Recording**.  
-Apple’s docs: https://support.apple.com/guide/mac-help/control-access-screen-system-audio-recording-mchld6aa7d23/mac
+### 本地模式：隐私和权衡
+- **隐私：** 使用 **Ollama/LM Studio** 时，提示和模型推理在您的机器上运行。LM Studio文档说明模型下载后完全**离线**运行。
+- **质量/延迟：** 本地开源模型正在改进，但在复杂摘要方面**可能不及**云端模型。
+- **功耗/电池：** 本地推理在Apple Silicon上**GPU密集**，会更快消耗电池；长时间捕获建议**接通电源**。
 
 ---
 
-## Configuration
+## 自动化集成
 
-- **AI Provider**
-  - Choose **Gemini** (set `GEMINI_API_KEY`) or **Local** (Ollama/LM Studio endpoint).  
-  - For Gemini keys: https://ai.google.dev/gemini-api/docs/api-key
-- **Capture settings**
-  - Start/stop capture from the main UI. Use **Debug** to verify batch contents.
-- **Data locations**
-  - See **Data & Privacy** for exact paths and a purge tip.
+Dayflow 注册了 `dayflow://` URL scheme，因此您可以从快捷指令、热键启动器或脚本触发常见操作。
 
----
+**支持的URL**
+- `dayflow://start-recording` — 开始录制（如已在录制则无操作）
+- `dayflow://stop-recording` — 暂停录制（如已暂停则无操作）
 
-## Automation
+**快速测试**
+- 在终端中：`open dayflow://start-recording` 或 `open dayflow://stop-recording`
+- 在快捷指令中：添加**打开URL**操作，使用上述任一链接
 
-Dayflow registers a `dayflow://` URL scheme so you can trigger common actions from Shortcuts, hotkey launchers, or scripts.
-
-**Supported URLs**
-- `dayflow://start-recording` — enable capture (no-op if already recording)
-- `dayflow://stop-recording` — pause capture (no-op if already paused)
-
-**Quick checks**
-- From Terminal: `open dayflow://start-recording` or `open dayflow://stop-recording`
-- In Shortcuts: add an **Open URLs** action with either link above
-
-Deeplink-triggered state changes are logged as `reason: "deeplink"` in analytics so you can distinguish automations from manual toggles.
+深度链接触发的状态更改在分析中记录为 `reason: "deeplink"`，因此您可以区分自动化和手动切换。
 
 ---
 
-## Debug & Developer Tools
+## 开发调试
 
-You can click the Dayflow icon in the menu bar and view the saved recordings
+您可以点击菜单栏中的Dayflow图标并查看已保存的录制文件。
 
 ---
 
-## Auto‑updates (Sparkle)
-
-Dayflow integrates **Sparkle** via Swift Package Manager and shows the current version + a “Check for updates” action. By default, the updater **auto‑checks daily** and **auto‑downloads** updates.
-
-
-## Project structure
+## 项目结构
 
 ```
 Dayflow/
-├─ Dayflow/                 # SwiftUI app sources (timeline UI, debug UI, capture & analysis pipeline)
-├─ docs/                    # Appcast and documentation assets (screenshots, videos)
-├─ scripts/                 # Release automation (DMG, notarization, appcast, Sparkle signing, one-button release)
+├─ Dayflow/                 # SwiftUI 应用源码（时间线UI、调试UI、录制和分析管道）
+├─ docs/                    # Appcast和文档资源（截图、视频）
+├─ scripts/                 # 发布自动化（DMG、公证、appcast、Sparkle签名、一键发布）
+├─ CLAUDE.md               # 项目架构总览和开发指南
+├─ README_CN.md            # 中文版说明文档
+```
+
+## 主要模块
+
+| 模块 | 功能描述 | 核心文件 |
+|------|----------|----------|
+| 录制模块 | 屏幕录制、视频处理、文件存储 | `ScreenRecorder.swift` |
+| AI分析 | LLM服务、多提供商支持、提示词管理 | `LLMService.swift`, `GeminiDirectProvider.swift` |
+| 时间线生成 | 活动分析、时间解析、卡片生成 | `AnalysisManager.swift` |
+| 用户界面 | SwiftUI界面、时间线展示、设置页面 | `MainView.swift`, `SettingsView.swift` |
+
+---
+
+## 贡献指南
+
+欢迎提交PR！如果您计划进行重大更改，请先开启issue讨论范围和方法。
+
+### 中文版开发方向
+- 🌏 **更多中文AI模型**：集成通义千问、文心一言等国产大模型
+- 📊 **中文内容分析**：优化对中文应用和网页内容的识别
+- 🎨 **本土化UI/UX**：根据中国用户反馈改进界面体验
+- 🚀 **性能优化**：针对中文使用场景的性能调优
+
+### 开发环境设置
+```bash
+# 克隆中文版项目
+git clone https://github.com/gjwhw/Dayflow-cn.git
+cd Dayflow-cn
+
+# 切换到中文开发分支
+git checkout feature/custom-build-location
+
+# 打开Xcode项目
+open Dayflow.xcodeproj
 ```
 
 ---
 
-## Troubleshooting
+## 版本历史
 
-- **Screen capture is blank or fails**  
-  Check System Settings → Privacy & Security → **Screen & System Audio Recording** and ensure **Dayflow** is enabled.
-- **API errors**  
-  Go into settings and verify your `GEMINI_API_KEY` and network connectivity.
-
----
-
-## Roadmap
-
-- [ ] V1 of the Dashboard (track answers to custom questions)
-- [ ] V1 of the daily journal
-- [ ] Fine tuning a small VLM 
+### v1.1.21 (当前版本)
+- ✅ 完成所有UI界面的中文化本地化
+- ✅ 优化Gemini和本地模型的中文提示词
+- ✅ 改进中文应用和内容的AI识别能力
+- ✅ 修复设置页面的连接健康功能
+- ✅ 支持自定义构建路径和中文名称
 
 ---
 
-## Contributing
+## 许可证
 
-PRs welcome! If you plan a larger change, please open an issue first to discuss scope and approach.  
-
----
-
-## License
-
-Licensed under the MIT License. See LICENSE for the full text.
-Software is provided “AS IS”, without warranty of any kind.
+基于MIT许可证发布。详见[LICENSE](LICENSE)全文。
+软件按"原样"提供，不提供任何形式的保证。
 
 ---
 
-## Acknowledgements
+## 致谢
 
-- [Sparkle](https://github.com/sparkle-project/Sparkle) for battle‑tested macOS updates.
-- [Google AI Gemini API](https://ai.google.dev/gemini-api/docs) for analysis.
-- [Ollama](https://ollama.com/) and [LM Studio](https://lmstudio.ai/) for local model support.
+- [Sparkle](https://github.com/sparkle-project/Sparkle) 提供可靠的macOS更新框架
+- [Google AI Gemini API](https://ai.google.dev/gemini-api/docs) 提供分析能力
+- [Ollama](https://ollama.com/) 和 [LM Studio](https://lmstudio.ai/) 提供本地模型支持
+
+---
+
+## 中文版维护者
+
+本项目中文版由社区维护，持续为中文用户提供更好的本地化体验。
+
+如果您在使用过程中遇到问题或有改进建议，欢迎：
+- 提交 [Issue](https://github.com/gjwhw/Dayflow-cn/issues)
+- 参与 [讨论](https://github.com/gjwhw/Dayflow-cn/discussions)
+- 提交 [Pull Request](https://github.com/gjwhw/Dayflow-cn/pulls)
+
+**让AI更好地理解中文工作场景，打造最适合中国用户的时间管理工具！** 🇨🇳
