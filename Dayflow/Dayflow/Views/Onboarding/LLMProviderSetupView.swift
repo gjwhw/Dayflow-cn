@@ -623,7 +623,7 @@ struct LLMProviderSetupView: View {
                                     modelId: $setupState.localModelId,
                                     apiKey: $setupState.localAPIKey,
                                     engine: setupState.localEngine,
-                                    showInputs: setupState.localEngine == .custom,
+                                    showInputs: true,
                                     onTestComplete: { success in
                                         setupState.hasTestedConnection = true
                                         setupState.testSuccessful = success

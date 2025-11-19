@@ -589,7 +589,8 @@ struct SettingsView: View {
                             modelId: $localModelId,
                             apiKey: $localAPIKey,
                             engine: localEngine,
-                            showInputs: localEngine == .custom,
+                            showInputs: true,
+                            buttonLabel: "测试本地API",
                             onTestComplete: { _ in
                                 UserDefaults.standard.set(localBaseURL, forKey: "llmLocalBaseURL")
                                 UserDefaults.standard.set(localModelId, forKey: "llmLocalModelId")
