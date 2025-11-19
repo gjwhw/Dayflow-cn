@@ -1,7 +1,17 @@
 # Dayflow 中文版 - 您的AI工作日记录助手
 
+> **📢 重要说明：这是 Dayflow 的中文翻译版本**
+>
+> 本项目是 [Dayflow](https://github.com/JerryZLiu/Dayflow) 的中文本地化版本，主要提供：
+> - ✅ 完整的中文界面和用户体验
+> - ✅ 针对中文用户优化的AI提示词
+> - ✅ 中文应用和内容的识别增强
+> - 🔗 **原版项目**: [https://github.com/JerryZLiu/Dayflow](https://github.com/JerryZLiu/Dayflow)
+>
+> 后续可能会根据中文用户需求迭代一些本地化功能。
+
 <div align="center">
-  <img src="docs/images/dayflow_header.png" alt="Dayflow CN" width="400">
+  <img src="docs/images/dayflow_header.png" alt="Dayflow" width="400">
 </div>
 
 <div align="center">
@@ -11,12 +21,14 @@
 
 <div align="center">
   <!-- Badges -->
+  <a href="https://github.com/JerryZLiu/Dayflow">
+    <img src="https://img.shields.io/badge/原版项目-Dayflow-blue?logo=github" alt="Original Project">
+  </a>
   <img src="https://img.shields.io/badge/macOS-13%2B-000?logo=apple" alt="Platform: macOS 13+">
   <img src="https://img.shields.io/badge/SwiftUI-✓-orange" alt="SwiftUI">
-  <img src="https://img.shields.io/badge/更新-Sparkle-informational" alt="Updates: Sparkle">
   <img src="https://img.shields.io/badge/AI-Gemini%20或%20本地模型-blue" alt="AI: Gemini / Local">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License: MIT">
-  <img src="https://img.shields.io/badge/语言-中文%20本地化-red" alt="Language: Chinese Localized">
+  <img src="https://img.shields.io/badge/版本-中文翻译版-red" alt="Chinese Localization">
 </div>
 
 <div align="center">
@@ -24,9 +36,11 @@
 </div>
 
 <div align="center">
-  <a href="https://github.com/JerryZLiu/Dayflow/releases/latest">
-    <img src="https://img.shields.io/badge/下载%20Mac%20版-⬇%20%20Dayflow%20CN.dmg-blue?style=for-the-badge&logo=apple" alt="Download Dayflow CN for Mac">
+  <a href="https://github.com/gjwhw/Dayflow-cn/releases">
+    <img src="https://img.shields.io/badge/下载%20中文版-⬇%20%20Dayflow%20CN.dmg-blue?style=for-the-badge&logo=apple" alt="下载最新的 Dayflow CN.dmg">
   </a>
+  <br>
+  <small>中文版 Releases | 原版 <a href="https://github.com/JerryZLiu/Dayflow/releases">点击这里</a></small>
 </div>
 
 <p align="center">
@@ -283,21 +297,52 @@ open Dayflow.xcodeproj
 
 ---
 
-## 致谢
+## 项目信息
 
+### 原版项目
+- **作者**: Jerry Liu
+- **仓库**: https://github.com/JerryZLiu/Dayflow
+- **许可**: MIT License
+- **特别感谢**: 感谢Jerry Liu开发了这样优秀的AI时间管理工具！
+
+### 中文翻译版
+- **翻译和维护**: h3glove
+- **仓库**: https://github.com/gjwhw/Dayflow-cn
+- **主要工作**: 基于原版的**个人学习练习项目**，主要进行中文本地化和用户体验优化
+- **许可**: MIT License (继承原版)
+- **项目性质**: 这是我个人的学习和翻译练习项目，旨在将优秀的软件带给更多中文用户
+
+### 反馈和贡献
+
+**中文版反馈**
+如果您在使用中文版时遇到问题或有改进建议：
+- 提交 [Issue](https://github.com/gjwhw/Dayflow-cn/issues)
+- 参与 [讨论](https://github.com/gjwhw/Dayflow-cn/discussions)
+
+**原版反馈**
+如果您想反馈原版功能相关的问题：
+- 访问 [原版项目](https://github.com/JerryZLiu/Dayflow)
+
+---
+
+## 🙏 致谢
+
+**特别感谢原版作者 Jerry Liu！**
+
+感谢您开发了如此优秀的AI时间管理工具。这个中文翻译版是我的个人学习练习项目，希望能够：
+
+- 让更多中文用户了解和使用Dayflow
+- 提供更友好的中文用户体验
+- 学习和提升自己的技术水平
+- 为开源社区贡献一份力量
+
+**技术致谢**
 - [Sparkle](https://github.com/sparkle-project/Sparkle) 提供可靠的macOS更新框架
 - [Google AI Gemini API](https://ai.google.dev/gemini-api/docs) 提供分析能力
 - [Ollama](https://ollama.com/) 和 [LM Studio](https://lmstudio.ai/) 提供本地模型支持
 
----
-
-## 中文版维护者
-
-本项目中文版由社区维护，持续为中文用户提供更好的本地化体验。
-
-如果您在使用过程中遇到问题或有改进建议，欢迎：
-- 提交 [Issue](https://github.com/gjwhw/Dayflow-cn/issues)
-- 参与 [讨论](https://github.com/gjwhw/Dayflow-cn/discussions)
-- 提交 [Pull Request](https://github.com/gjwhw/Dayflow-cn/pulls)
+**声明**: 本项目完全遵循MIT许可证，所有代码基于原版Dayflow进行本地化优化。
 
 **让AI更好地理解中文工作场景，打造最适合中国用户的时间管理工具！** 🇨🇳
+
+*感谢原作者的杰出工作，感谢开源社区的共享精神！*
