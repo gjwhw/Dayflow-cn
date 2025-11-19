@@ -19,13 +19,13 @@ struct StatusMenuView: View {
 
             MenuDivider()
 
-            MenuRow(title: "Open Dayflow", systemImage: "macwindow", action: openDayflow)
-            MenuRow(title: "Open Recordings", systemImage: "folder", action: openRecordingsFolder)
-            MenuRow(title: "Check for Updates", systemImage: "arrow.triangle.2.circlepath", action: checkForUpdates)
+            MenuRow(title: "打开Dayflow", systemImage: "macwindow", action: openDayflow)
+            MenuRow(title: "打开录制文件夹", systemImage: "folder", action: openRecordingsFolder)
+            MenuRow(title: "检查更新", systemImage: "arrow.triangle.2.circlepath", action: checkForUpdates)
 
             MenuDivider()
 
-            MenuRow(title: "Quit Completely", systemImage: "power", accent: .red, action: quitDayflow)
+            MenuRow(title: "完全退出", systemImage: "power", accent: .red, action: quitDayflow)
         }
         .padding(.vertical, 9)
         .padding(.horizontal, 9)

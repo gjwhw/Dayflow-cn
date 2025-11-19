@@ -621,17 +621,17 @@ struct SettingsView: View {
             }
 
             if currentProvider == "gemini" {
-                SettingsCard(title: "Gemini model preference", subtitle: "Choose which Gemini model Dayflow should prioritize") {
+                SettingsCard(title: "Gemini模型偏好", subtitle: "选择Dayflow应该优先使用哪个Gemini模型") {
                     GeminiModelSettingsCard(selectedModel: $selectedGeminiModel) { model in
                         persistGeminiModelSelection(model, source: "settings")
                     }
                 }
 
-                SettingsCard(title: "Gemini prompt customization", subtitle: "Override Dayflow's defaults to tailor card generation") {
+                SettingsCard(title: "Gemini提示自定义", subtitle: "覆盖Dayflow的默认设置以定制卡片生成") {
                     geminiPromptCustomizationView
                 }
             } else if currentProvider == "ollama" {
-                SettingsCard(title: "Local prompt customization", subtitle: "Adjust the prompts used for local timeline summaries") {
+                SettingsCard(title: "本地提示自定义", subtitle: "调整用于本地时间线摘要的提示") {
                     ollamaPromptCustomizationView
                 }
             }
@@ -761,7 +761,7 @@ struct SettingsView: View {
             }
             .toggleStyle(SwitchToggleStyle(tint: Color(red: 0.25, green: 0.17, blue: 0)))
 
-            promptEditorBlock(title: "Prompt text", text: text, isEnabled: isEnabled.wrappedValue, defaultText: defaultText)
+            promptEditorBlock(title: "提示文本", text: text, isEnabled: isEnabled.wrappedValue, defaultText: defaultText)
         }
         .padding(16)
         .background(Color.white.opacity(0.95))
@@ -858,7 +858,7 @@ struct SettingsView: View {
 
     private var otherContent: some View {
         VStack(alignment: .leading, spacing: 28) {
-            SettingsCard(title: "App preferences", subtitle: "General toggles and telemetry settings") {
+            SettingsCard(title: "应用偏好设置", subtitle: "常规开关和遥测设置") {
                 VStack(alignment: .leading, spacing: 14) {
                     Toggle(isOn: $analyticsEnabled) {
                         Text("分享崩溃报告和匿名使用数据")

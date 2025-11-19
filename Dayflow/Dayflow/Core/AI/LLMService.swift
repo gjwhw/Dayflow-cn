@@ -421,7 +421,7 @@ final class LLMService: LLMServicing {
             endTimestamp: endTimeStr,
             category: "System",
             subcategory: "Error",
-            title: "Processing failed",
+            title: "处理失败",
             summary: "Failed to process \(duration) minutes of recording from \(startTimeStr) to \(endTimeStr). \(humanError) Your recording is safe and can be reprocessed.",
             detailedSummary: "Error details: \(error.localizedDescription)\n\nThis recording batch (ID: \(batchId)) failed during AI processing. The original video files are preserved and can be reprocessed by retrying from Settings. Common causes include network issues, API rate limits, or temporary service outages.",
             distractions: nil,

@@ -416,7 +416,7 @@ struct LLMProviderSetupView: View {
                         .foregroundColor(.black.opacity(0.6))
                     TerminalCommandView(
                         title: "Run this command:",
-                        subtitle: "Downloads Qwen3 Vision 4B for Ollama",
+                        subtitle: "为Ollama下载Qwen3 Vision 4B",
                         command: "ollama pull qwen3-vl:4b"
                     )
                 } else if setupState.localEngine == .lmstudio {
@@ -485,7 +485,7 @@ struct LLMProviderSetupView: View {
             VStack(alignment: .leading, spacing: 24) {
                 TerminalCommandView(
                     title: "Terminal command:",
-                    subtitle: "Copy the code below and try running it in your terminal",
+                    subtitle: "复制下面的代码并尝试在终端中运行",
                     command: command
                 )
                 
@@ -500,7 +500,7 @@ struct LLMProviderSetupView: View {
                 APIKeyInputView(
                     apiKey: $setupState.apiKey,
                     title: "Enter your API key:",
-                    subtitle: "Paste your Gemini API key below",
+                    subtitle: "在下面粘贴您的Gemini API密钥",
                     placeholder: "AIza...",
                     onValidate: { key in
                         // Basic validation for now
@@ -550,7 +550,7 @@ struct LLMProviderSetupView: View {
                 
                 TerminalCommandView(
                     title: "Run this command:",
-                    subtitle: "This will download the \(LocalModelPreset.qwen3VL4B.displayName) model (about 5GB)",
+                    subtitle: "这将下载\(LocalModelPreset.qwen3VL4B.displayName) model (about 5GB)",
                     command: command
                 )
                 

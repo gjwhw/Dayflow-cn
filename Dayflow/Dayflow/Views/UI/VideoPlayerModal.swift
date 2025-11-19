@@ -160,7 +160,7 @@ class VideoPlayerViewModel: ObservableObject {
     private func loadSegments() {
         // Dummy data for now
         segments = [
-            VideoSegment(title: "Brainstorming with Chat GPT", startTime: 0, endTime: 420, color: .orange, activityType: .brainstorming),
+            VideoSegment(title: "与Chat GPT头脑风暴", startTime: 0, endTime: 420, color: .orange, activityType: .brainstorming),
             VideoSegment(title: "Browsing TripAdvisor", startTime: 420, endTime: 660, color: .red, activityType: .browsing),
             VideoSegment(title: "Comparing flights", startTime: 660, endTime: 780, color: .blue, activityType: .other("travel")),
             VideoSegment(title: "Break", startTime: 780, endTime: 840, color: .yellow, activityType: .breaks),

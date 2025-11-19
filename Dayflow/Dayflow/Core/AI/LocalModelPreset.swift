@@ -58,35 +58,35 @@ enum LocalModelPreset: String, CaseIterable, Codable {
         switch engine {
         case .ollama, .custom:
             return LocalModelInstructionSet(
-                title: "Install via Ollama",
-                subtitle: "Make sure you're on Ollama 0.12.10 or newer before pulling the model.",
+                title: "通过Ollama安装",
+                subtitle: "在拉取模型之前，请确保您使用的是Ollama 0.12.10或更新版本。",
                 bullets: [
-                    "Open Terminal",
-                    "Run the pull command below (≈5GB download)",
-                    "Keep Ollama running in the background"
+                    "打开终端",
+                    "运行下面的拉取命令（约5GB下载）",
+                    "保持Ollama在后台运行"
                 ],
-                commandTitle: "Run this command:",
-                commandSubtitle: "Downloads \(displayName) for Ollama",
+                commandTitle: "运行此命令：",
+                commandSubtitle: "为Ollama下载\(displayName)",
                 command: ollamaPullCommand,
                 buttonTitle: nil,
                 buttonURL: nil,
-                note: "Need to stay on Qwen2.5? Keep your current model selected and skip this upgrade."
+                note: "需要继续使用Qwen2.5？保持选择当前模型并跳过此升级。"
             )
         case .lmstudio:
             return LocalModelInstructionSet(
-                title: "Install inside LM Studio",
-                subtitle: "Make sure you're on 0.3.31. Use LM Studio's model browser to download the GGUF build.",
+                title: "在LM Studio中安装",
+                subtitle: "请确保您使用的是0.3.31版本。使用LM Studio的模型浏览器下载GGUF版本。",
                 bullets: [
-                    "Open LM Studio and click the Models tab",
-                    "Search for \"\(modelId(for: .lmstudio))\"",
-                    "Download the Instruct variant, then start Local Server"
+                    "打开LM Studio并点击模型选项卡",
+                    "搜索\"\(modelId(for: .lmstudio))\"",
+                    "下载Instruct版本，然后启动本地服务器"
                 ],
                 commandTitle: nil,
                 commandSubtitle: nil,
                 command: nil,
-                buttonTitle: "Open download in LM Studio",
+                buttonTitle: "在LM Studio中打开下载",
                 buttonURL: lmStudioDownloadURL,
-                note: "Tip: enable \"Launch local server\" so Dayflow can talk to LM Studio at \(LocalEngine.lmstudio.defaultBaseURL)."
+                note: "提示：启用\"启动本地服务器\"，以便Dayflow可以在\(LocalEngine.lmstudio.defaultBaseURL)与LM Studio通信。"
             )
         }
     }
