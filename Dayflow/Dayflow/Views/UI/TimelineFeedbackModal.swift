@@ -79,12 +79,12 @@ struct TimelineFeedbackModal: View {
     private var formContent: some View {
         VStack(spacing: 16) {
             VStack(spacing: 12) {
-                Text("Thank you!")
+                Text("谢谢！")
                     .font(Font.custom("InstrumentSerif-Regular", size: 18))
                     .foregroundColor(Color(hex: "333333"))
                     .multilineTextAlignment(.center)
 
-                Text("Tell us more about your feedback")
+                Text("告诉我们更多关于您的反馈")
                     .font(Font.custom("Nunito", size: 13).weight(.medium))
                     .foregroundColor(Color(hex: "333333"))
                     .multilineTextAlignment(.center)
@@ -139,7 +139,7 @@ struct TimelineFeedbackModal: View {
                                     .fill(shareLogs ? Color(hex: "FF8046") : Color.clear)
                             )
 
-                        Text("I’d like to share this log to the developer to help improve the product.")
+                        Text("我想与开发者分享此日志以帮助改进产品。")
                             .font(Font.custom("Nunito", size: 10).weight(.medium))
                             .foregroundColor(Color.black)
                             .fixedSize(horizontal: false, vertical: true)
@@ -151,7 +151,7 @@ struct TimelineFeedbackModal: View {
             }
 
             Button(action: onSubmit) {
-                Text("Submit")
+                Text("提交")
                     .font(Font.custom("Nunito", size: 12).weight(.medium))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -165,14 +165,14 @@ struct TimelineFeedbackModal: View {
 
     private var thanksContent: some View {
         VStack(spacing: 20) {
-            Text("Thank you for your feedback!")
+            Text("感谢您的反馈！")
                 .font(Font.custom("InstrumentSerif-Regular", size: 18))
                 .foregroundColor(Color(hex: "333333"))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 4)
 
             VStack(alignment: .leading, spacing: 12) {
-                Text("If you find that your activities are summarized inaccurately, try editing the descriptions of your categories to improve Dayflow’s accuracy.")
+                Text("如果您发现活动总结不准确，请尝试编辑您的分类描述以提高Dayflow的准确性。")
                     .font(Font.custom("Nunito", size: 12).weight(.medium))
                     .foregroundColor(Color(hex: "333333"))
                     .multilineTextAlignment(.leading)

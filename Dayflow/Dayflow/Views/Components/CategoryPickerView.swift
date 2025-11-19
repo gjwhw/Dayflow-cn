@@ -41,12 +41,12 @@ struct CategoryPickerView: View {
                     ZStack(alignment: .topLeading) {
                         // Main text
                         HStack(alignment: .top, spacing: 0) {
-                            Text("To help Dayflow organize your activities more accurately, try adding more details to the descriptions in your categories ")
+                            Text("为了帮助Dayflow更准确地组织您的活动，请尝试在您的分类中添加更多细节 ")
                                 .font(Font.custom("Nunito", size: 10).weight(.medium))
                                 .foregroundColor(Color(red: 0.39, green: 0.35, blue: 0.33)) // #635953
                             
                             Button(action: onNavigateToEditor) {
-                                Text("here")
+                                Text("这里")
                                     .font(Font.custom("Nunito", size: 10).weight(.medium))
                                     .foregroundColor(Color(red: 1.0, green: 0.4, blue: 0.0)) // #ff6600
                                     .underline()

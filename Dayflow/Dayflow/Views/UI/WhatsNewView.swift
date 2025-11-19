@@ -63,7 +63,7 @@ struct WhatsNewView: View {
         VStack(alignment: .leading, spacing: 18) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("What's New in \(releaseNote.version) 🎉")
+                    Text("\(releaseNote.version)版本的新内容 🎉")
                         .font(.custom("InstrumentSerif-Regular", size: 32))
                         .foregroundColor(.black.opacity(0.9))
 

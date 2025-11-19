@@ -81,7 +81,7 @@ struct TimelineRateSummaryView: View {
         }
         .buttonStyle(.plain)
         .contentShape(Rectangle())
-        .accessibilityLabel(direction == .up ? Text("Thumbs up") : Text("Thumbs down"))
+        .accessibilityLabel(direction == .up ? Text("赞") : Text("踩"))
     }
 }
 

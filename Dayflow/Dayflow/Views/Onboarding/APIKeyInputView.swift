@@ -81,7 +81,7 @@ struct APIKeyInputView: View {
                 
                 // Validation message
                 if validationState == .invalid {
-                    Text("API key should start with 'AIza' and be at least 30 characters")
+                    Text("API密钥应以'AIza'开头且至少30个字符")
                         .font(.custom("Nunito", size: 12))
                         .foregroundColor(Color(hex: "E91515"))
                         .transition(.opacity)
@@ -95,7 +95,7 @@ struct APIKeyInputView: View {
                     .font(.system(size: 12))
                     .foregroundColor(Color(red: 0.34, green: 1, blue: 0.45).opacity(0.7))
                 
-                Text("Your API key is encrypted and stored in your macOS Keychain - never uploaded anywhere")
+                Text("您的API密钥已加密并存储在macOS钥匙串中 - 永远不会上传到任何地方")
                     .font(.custom("Nunito", size: 12))
                     .foregroundColor(.black.opacity(0.5))
             }

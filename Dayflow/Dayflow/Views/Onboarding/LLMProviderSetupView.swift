@@ -357,7 +357,7 @@ struct LLMProviderSetupView: View {
                                 }
                             }
                             .frame(width: 18, height: 18)
-                            Text("Download LM Studio")
+                            Text("下载LM Studio")
                                 .font(.custom("Nunito", size: 14))
                                 .fontWeight(.semibold)
                         },
@@ -367,7 +367,7 @@ struct LLMProviderSetupView: View {
                         cornerRadius: 8,
                         showOverlayStroke: true
                     )
-                    Text("or")
+                    Text("或")
                         .font(.custom("Nunito", size: 13))
                         .foregroundColor(.black.opacity(0.5))
                         .padding(.horizontal, 4)
@@ -388,7 +388,7 @@ struct LLMProviderSetupView: View {
                                 }
                             }
                             .frame(width: 18, height: 18)
-                            Text("Download Ollama")
+                            Text("下载Ollama")
                                 .font(.custom("Nunito", size: 14))
                                 .fontWeight(.semibold)
                         },
@@ -399,19 +399,19 @@ struct LLMProviderSetupView: View {
                         showOverlayStroke: true
                     )
                 }
-                Text("Already have a local server? Make sure it’s OpenAI-compatible. You can set a custom base URL in the next step.")
+                Text("已经有本地服务器？确保它是OpenAI兼容的。您可以在下一步中设置自定义基础URL。")
                     .font(.custom("Nunito", size: 13))
                     .foregroundColor(.black.opacity(0.6))
                 HStack { Spacer(); nextButton }
             }
         case .localModelInstall:
             VStack(alignment: .leading, spacing: 16) {
-                Text("Install Qwen3-VL 4B")
+                Text("安装Qwen3-VL 4B")
                     .font(.custom("Nunito", size: 24))
                     .fontWeight(.semibold)
                     .foregroundColor(.black.opacity(0.9))
                 if setupState.localEngine == .ollama {
-                    Text("After installing Ollama, run this in your terminal to download the model (≈5GB):")
+                    Text("安装Ollama后，在终端中运行此命令以下载模型（约5GB）：")
                         .font(.custom("Nunito", size: 14))
                         .foregroundColor(.black.opacity(0.6))
                     TerminalCommandView(
@@ -421,7 +421,7 @@ struct LLMProviderSetupView: View {
                     )
                 } else if setupState.localEngine == .lmstudio {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("After installing LM Studio, download the recommended model:")
+                        Text("安装LM Studio后，下载推荐的模型：")
                             .font(.custom("Nunito", size: 14))
                             .foregroundColor(.black.opacity(0.6))
 
@@ -430,7 +430,7 @@ struct LLMProviderSetupView: View {
                             content: {
                                 HStack(spacing: 8) {
                                     Image(systemName: "arrow.down.circle.fill").font(.system(size: 14))
-                                    Text("Download Qwen3-VL 4B in LM Studio").font(.custom("Nunito", size: 14)).fontWeight(.semibold)
+                                    Text("在LM Studio中下载Qwen3-VL 4B").font(.custom("Nunito", size: 14)).fontWeight(.semibold)
                                 }
                             },
                             background: Color(red: 0.25, green: 0.17, blue: 0),
@@ -443,11 +443,11 @@ struct LLMProviderSetupView: View {
                         )
 
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("This will open LM Studio and prompt you to download the model (≈3GB).")
+                            Text("这将打开LM Studio并提示您下载模型（约3GB）。")
                                 .font(.custom("Nunito", size: 13))
                                 .foregroundColor(.black.opacity(0.65))
 
-                            Text("Once downloaded, turn on 'Local Server' in LM Studio (default http://localhost:1234)")
+                            Text("下载后，在LM Studio中开启'本地服务器'（默认http://localhost:1234）")
                                 .font(.custom("Nunito", size: 13))
                                 .foregroundColor(.black.opacity(0.65))
                         }
@@ -455,7 +455,7 @@ struct LLMProviderSetupView: View {
 
                         // Fallback manual instructions
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Manual setup:")
+                            Text("手动设置：")
                                 .font(.custom("Nunito", size: 12))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black.opacity(0.5))
