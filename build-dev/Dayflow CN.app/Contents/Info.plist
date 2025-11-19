@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ATSApplicationFontsPath</key>
+	<string>.</string>
+	<key>BuildMachineOSBuild</key>
+	<string>25B78</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Dayflow CN</string>
+	<key>CFBundleExecutable</key>
+	<string>Dayflow CN</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>teleportlabs.com.Dayflow.cn</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Dayflow CN</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1.21-cn</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>teleportlabs.com.Dayflow</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dayflow</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>61-cn</string>
+	<key>DTCompiler</key>
+	<string>com.apple.compilers.llvm.clang.1_0</string>
+	<key>DTPlatformBuild</key>
+	<string>25B74</string>
+	<key>DTPlatformName</key>
+	<string>macosx</string>
+	<key>DTPlatformVersion</key>
+	<string>26.1</string>
+	<key>DTSDKBuild</key>
+	<string>25B74</string>
+	<key>DTSDKName</key>
+	<string>macosx26.1</string>
+	<key>DTXcode</key>
+	<string>2611</string>
+	<key>DTXcodeBuild</key>
+	<string>17B100</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.0</string>
+	<key>LSUIElement</key>
+	<false/>
+	<key>NSScreenCaptureUsageDescription</key>
+	<string>Dayflow uses screen access to create your timeline. Recordings stay on your Mac and you can pause or delete them anytime.</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<true/>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUEnableInstallerLauncherService</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://dayflow.so/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>lf33Kn/Gx26j9zfGtsNNc6Lk2QTBHyXkFxxwnsXmdYA=</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>3600</integer>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Nunito-VariableFont_wght.ttf</string>
+		<string>Nunito-Italic-VariableFont_wght.ttf</string>
+		<string>InstrumentSerif-Regular.ttf</string>
+		<string>InstrumentSerif-Italic.ttf</string>
+		<string>Figtree-VariableFont_wght.ttf</string>
+		<string>Figtree-Italic-VariableFont_wght.ttf</string>
+	</array>
+</dict>
+</plist>

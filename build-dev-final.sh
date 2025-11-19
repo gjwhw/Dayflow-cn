@@ -9,7 +9,7 @@ echo "🚀 构建Dayflow开发版本..."
 
 # 设置变量
 OUTPUT_DIR="./build-dev"
-DEV_APP_NAME="Dayflow Dev"
+DEV_APP_NAME="Dayflow CN"
 
 # 清理旧的构建目录
 if [ -d "$OUTPUT_DIR" ]; then
@@ -39,9 +39,9 @@ cp -R "/Users/h3glove/Library/Developer/Xcode/DerivedData/Dayflow-essstssbtaiddh
 /usr/libexec/PlistBuddy -c "Add :CFBundleName string '$DEV_APP_NAME'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist" 2>/dev/null || true
 /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName '$DEV_APP_NAME'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleName '$DEV_APP_NAME'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString '1.1.21-dev'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion '61-dev'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier 'teleportlabs.com.Dayflow.dev'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString '1.1.21-cn'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion '61-cn'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier 'teleportlabs.com.Dayflow.cn'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleExecutable '$DEV_APP_NAME'" "$OUTPUT_DIR/${DEV_APP_NAME}.app/Contents/Info.plist"
 
 # 重命名可执行文件
@@ -51,13 +51,13 @@ echo "✅ 构建完成！"
 echo ""
 echo "📱 应用信息:"
 echo "   名称: $DEV_APP_NAME"
-echo "   版本: 1.1.21-dev"
-echo "   Bundle ID: teleportlabs.com.Dayflow.dev"
+echo "   版本: 1.1.21-cn"
+echo "   Bundle ID: teleportlabs.com.Dayflow.cn"
 echo "   位置: $OUTPUT_DIR/${DEV_APP_NAME}.app"
 echo ""
-echo "🚀 运行开发版本: open \"$OUTPUT_DIR/${DEV_APP_NAME}.app\""
+echo "🚀 运行中文版本: open \"$OUTPUT_DIR/${DEV_APP_NAME}.app\""
 echo ""
 echo "💡 提示:"
-echo "   - 开发版本与正式版本完全独立，数据不共享"
+echo "   - 中文版本与正式版本完全独立，数据不共享"
 echo "   - 两个版本可以同时运行"
-echo "   - 开发版本显示为 '$DEV_APP_NAME'"
+echo "   - 中文版本显示为 '$DEV_APP_NAME'"

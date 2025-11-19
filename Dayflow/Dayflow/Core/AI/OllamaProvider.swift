@@ -703,30 +703,33 @@ final class OllamaProvider: LLMProvider {
         let promptSections = OllamaPromptSections(overrides: OllamaPromptPreferences.load())
 
         let basePrompt = """
-        You are analyzing someone's computer activity from the last 15 minutes.
+        您正在分析某人过去15分钟的计算机活动。
 
-        Activity periods:
+        活动时段：
         \(observationsText)
 
-          Create a summary that captures what happened during this time period.
+        创建一个摘要，捕捉这段时间内发生的事情。
+
+        ## 重要输出要求：
+        **请使用中文（简体中文）输出所有内容，包括推理、摘要和分类，不要使用英文。**
 
         \(promptSections.summary)
 
-        CATEGORIES:
-        Choose exactly one:
+        分类：
+        请选择恰好一个：
         \(categoriesSection)
 
-          REASONING:
-          Explain your thinking process:
-          1. What were the main activities and how much time was spent on each?
-          2. Was this primarily work-related, personal, or brief distractions?
-          3. Which category best fits based on the MAJORITY of time and focus?
-          4. How did you structure the summary to capture the most important activities?
+        推理过程：
+        解释您的思考过程：
+        1. 主要活动是什么，每个活动花了多少时间？
+        2. 这主要是工作相关的、个人的，还是短暂的分心？
+        3. 基于大部分时间和焦点，哪个分类最适合？
+        4. 您如何构建摘要来捕捉最重要的活动？
 
-        Return JSON:
+        返回JSON：
         {
-          "reasoning": "Your step-by-step thinking process",
-          "summary": "Your 2-3 sentence summary",
+          "reasoning": "您的逐步思考过程",
+          "summary": "您的2-3句话摘要",
           "category": "\(allowedValues)"
         }
         """
@@ -765,8 +768,8 @@ final class OllamaProvider: LLMProvider {
                 prompt = basePrompt + """
 
 
-                PREVIOUS ATTEMPT FAILED — The response was invalid (error: \(error.localizedDescription)).
-                Respond with ONLY the JSON object described above. Ensure it contains "reasoning", "summary", and "category" fields.
+                先前的尝试失败 — 响应无效（错误：\(error.localizedDescription)）。
+                仅返回上述描述的JSON对象。确保它包含"reasoning"、"summary"和"category"字段。
                 """
             }
         }
@@ -783,21 +786,24 @@ final class OllamaProvider: LLMProvider {
         let promptSections = OllamaPromptSections(overrides: OllamaPromptPreferences.load())
 
         let basePrompt = """
-        Create a casual, conversational title for this activity summary.
+        为这个活动摘要创建一个随意的、对话式的标题。
 
-        INPUT SUMMARY:
+        ## 重要输出要求：
+        **请使用中文（简体中文）输出所有内容，包括推理和标题，不要使用英文。**
+
+        输入摘要：
         "\(summary)"
 
         \(promptSections.title)
 
-        Return JSON:
+        返回JSON：
         {
-          "reasoning": "Explain how you chose the title",
-          "title": "5-8 word conversational title highlighting one standout activity (optionally plus one other dominant action) using only summary facts"
+          "reasoning": "解释您如何选择这个标题",
+          "title": "5-8个词的对话式标题，突出一个突出活动（可选择加上另一个主要行动），仅使用摘要中的事实"
         }
 
-        Avoid comma-separated lists or multiple conjunctions; only mention a second activity if it clearly shares the spotlight without turning into a checklist.
-        Always describe what happened (e.g., "Reviewed GitHub PRs") instead of just naming apps or panes.
+        避免逗号分隔的列表或多个连词；只有在第二个活动明显共享焦点而不会变成清单时才提及。
+        始终描述发生了什么（例如"审查了GitHub PR"），而不仅仅是命名应用程序或窗格。
         """
 
         print("[DEBUG] generateTitle final prompt:")
@@ -833,8 +839,8 @@ final class OllamaProvider: LLMProvider {
                 prompt = basePrompt + """
 
 
-                PREVIOUS ATTEMPT FAILED — The response was invalid (error: \(error.localizedDescription)).
-                Respond with ONLY the JSON object described above. Ensure the title uses 5-8 words drawn from the summary details.
+                先前的尝试失败 — 响应无效（错误：\(error.localizedDescription)）。
+                仅返回上述描述的JSON对象。确保标题使用5-8个从摘要细节中提取的词语。
                 """
             }
         }
@@ -975,8 +981,8 @@ final class OllamaProvider: LLMProvider {
                 prompt = basePrompt + """
 
 
-                PREVIOUS ATTEMPT FAILED — The response was invalid (error: \(error.localizedDescription)).
-                Return ONLY the JSON object described above with "reason", "combine", and "confidence" fields.
+                先前的尝试失败 — 响应无效（错误：\(error.localizedDescription)）。
+                仅返回上述描述的JSON对象，包含"reason"、"combine"和"confidence"字段。
                 """
             }
         }
@@ -987,42 +993,45 @@ final class OllamaProvider: LLMProvider {
 
     private func mergeTwoCards(previousCard: ActivityCardData, newCard: ActivityCardData, batchId: Int64?) async throws -> (ActivityCardData, String) {
         let basePrompt = """
-        Create a single activity card that covers both time periods.
+        创建一个覆盖两个时间段的活动卡片。
 
-        Activity 1 (\(previousCard.startTime) - \(previousCard.endTime)):
-        Title: \(previousCard.title)
-        Summary: \(previousCard.summary)
+        ## 重要输出要求：
+        **请使用中文（简体中文）输出所有内容，包括标题和摘要，不要使用英文。**
 
-        Activity 2 (\(newCard.startTime) - \(newCard.endTime)):
-        Title: \(newCard.title)
-        Summary: \(newCard.summary)
+        活动1 (\(previousCard.startTime) - \(previousCard.endTime)):
+        标题: \(previousCard.title)
+        摘要: \(previousCard.summary)
 
-        Create a unified title and summary that covers the entire period from \(previousCard.startTime) to \(newCard.endTime).
-        Title: 5-8 words, conversational, spotlight the main through-line. You may mention one other equally dominant action, but connect it with a quick “while” or em dash—never comma lists or “and” chains. Cite only the most important apps/sites rather than every noun.
-        Summary: Two sentences max, first-person perspective without using the word I. Retell how the work flowed from the first card into the second with concrete verbs (debugged, reviewed, watched) and name the stand-out tools/topics once each. Skip laundry lists, filler like “various tasks,” and bullet points.
-        Avoid the words social, media, platform, platforms, interaction, interactions, various, engaged, blend, activity, activities.
-        Do not refer to the user; write from the user’s perspective.
+        活动2 (\(newCard.startTime) - \(newCard.endTime)):
+        标题: \(newCard.title)
+        摘要: \(newCard.summary)
 
-          GOOD EXAMPLES:
-          Card 1: Customer interviews wrap-up + Card 2: Insights deck synthesis
-          Merged Title: Shaped customer story for insights deck
-          Merged Summary: Logged interview quotes into Airtable. Highlighted the strongest themes and molded them into the insights deck outline.
+        创建一个涵盖从\(previousCard.startTime)到\(newCard.endTime)整个时期的统一标题和摘要。
+        标题：5-8个词，对话式，突出主线。可以提到另一个同样重要的行动，但用快速的"同时"或破折号连接——永远不要逗号列表或"和"链。只引用最重要的应用/网站而不是每个名词。
+        摘要：最多两句话，第一人称视角但不使用"我"。重述工作如何从第一个卡片流向第二个卡片，使用具体动词（调试、审查、观看）并命名突出工具/主题各一次。跳过洗衣清单、如"各种任务"之类的填充物和要点。
+        避免使用社交、媒体、平台、交互、各种、参与、混合、活动等词语。
+        不要指代用户；从用户的角度写作。
 
-          Card 1: QA-ing mobile release + Card 2: Answering support tickets
-          Merged Title: Balanced mobile QA while clearing support
-          Merged Summary: Ran through the iOS smoke checklist in TestFlight. Hopped into Help Scout to close the urgent tickets.
+          良好示例：
+        卡片1：客户访谈总结 + 卡片2：洞察卡片合成
+        合并标题：为洞察卡片塑造客户故事
+        合并摘要：将访谈引言记录到Airtable中。突出最强主题并将其塑造成洞察卡片大纲。
 
-          BAD EXAMPLES:
-          ✗ Title: Coding, gaming, and Swift fixes with AI tools and Dayflow (comma list trying to cover everything)
-          ✗ Title: Busy afternoon session (too vague)
-          ✗ Summary: Worked on several things across platforms (generic, missing specifics)
-          ✗ Summary that omits a named site/app/topic from the inputs
-          ✗ Summary longer than three sentences or formatted as bullet points
+        卡片1：移动版本QA + 卡片2：回答支持票据
+        合并标题：平衡移动QA同时清理支持
+        合并摘要：在TestFlight中运行iOS冒烟检查清单。跳入Help Scout关闭紧急票据。
 
-        Return JSON:
+        错误示例：
+        ✗ 标题：编码、游戏和Swift修复与AI工具和Dayflow（试图涵盖所有内容的逗号列表）
+        ✗ 标题：忙碌的下午会话（太模糊）
+        ✗ 摘要：在多个平台上处理了几件事（通用，缺少具体内容）
+        ✗ 摘要从输入中省略了命名的网站/应用/主题
+        ✗ 摘要超过三句话或格式化为要点
+
+        返回JSON：
         {
-          "title": "Merged title",
-          "summary": "Merged summary"
+          "title": "合并的标题",
+          "summary": "合并的摘要"
         }
         """
 
@@ -1074,8 +1083,8 @@ final class OllamaProvider: LLMProvider {
                 prompt = basePrompt + """
 
 
-                PREVIOUS ATTEMPT FAILED — The response was invalid (error: \(error.localizedDescription)).
-                Respond with ONLY the JSON object described above containing merged "title" and "summary" fields.
+                先前的尝试失败 — 响应无效（错误：\(error.localizedDescription)）。
+                仅返回上述描述的JSON对象，包含合并的"title"和"summary"字段。
                 """
             }
         }
@@ -1421,8 +1430,8 @@ final class OllamaProvider: LLMProvider {
                 prompt = basePrompt + """
 
 
-                PREVIOUS ATTEMPT FAILED — Your segments only covered \(coveragePercent)% of the \(durationString) video.
-                Merge adjacent snapshots or extend segment boundaries so the segments cover at least 80% of the runtime without inventing events.
+                先前的尝试失败 — 您的片段仅覆盖了\(durationString)视频的\(coveragePercent)%。
+                合并相邻的快照或扩展片段边界，使片段覆盖至少80%的运行时间，不要虚构事件。
                 """
             } catch {
                 lastError = error
@@ -1440,8 +1449,8 @@ final class OllamaProvider: LLMProvider {
                 prompt = basePrompt + """
 
 
-                PREVIOUS ATTEMPT FAILED — The response was invalid (error: \(error.localizedDescription)).
-                Respond with ONLY the JSON object described above. Ensure it contains a "reasoning" string and a "segments" array with 2-5 items covering at least 80% of the video.
+                先前的尝试失败 — 响应无效（错误：\(error.localizedDescription)）。
+                仅返回上述描述的JSON对象。确保它包含"reasoning"字符串和"segments"数组，包含2-5个项目，覆盖至少80%的视频。
                 """
             }
         }

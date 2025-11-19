@@ -281,6 +281,9 @@ final class GeminiDirectProvider: LLMProvider {
 
         您的工作是将某人的计算机使用情况转录为少量有意义的活动片段。
 
+        ## 重要输出要求：
+        **请使用中文（简体中文）输出所有描述内容，不要使用英文。**
+
         ## 关键：这个视频长度正好是\(durationString)。所有时间戳必须在00:00到\(durationString)之间。
 
         ## 黄金法则：每15分钟视频目标3-5个片段（越少越好）
@@ -643,6 +646,10 @@ final class GeminiDirectProvider: LLMProvider {
 
         let basePrompt = """
         您是一位数字人类学家，观察用户的原始活动日志。您的目标是将这个日志合成为高级别的、人类可读的会话故事，以时间线卡片系列的形式呈现。
+
+        ## 重要输出要求：
+        **请使用中文（简体中文）输出所有内容，包括标题、摘要、详细摘要和分类。不要使用英文输出任何内容。**
+
         黄金法则：
             创建叙述一个连贯会话的卡片，目标15-60分钟。保持每张卡片≥10分钟，分割任何>60分钟的卡片，如果潜在卡片<10分钟，将其合并到保留最佳故事的相邻卡片中。
 
@@ -651,7 +658,7 @@ final class GeminiDirectProvider: LLMProvider {
 
             核心指令：
             - 扩展前主题测试：只有当新的观察继续相同的主导活动时才扩展当前卡片。少于10分钟的转换应该记录为分心或合并到保持主题连贯的相邻片段中；≥10分钟的转换成为新卡片。
-        
+
         \(promptSections.title)
 
         \(promptSections.summary)
@@ -771,19 +778,19 @@ final class GeminiDirectProvider: LLMProvider {
                 var errorMessages: [String] = []
                 if !coverageValid && coverageError != nil {
                     errorMessages.append("""
-                    TIME COVERAGE ERROR:
+                    时间覆盖错误：
                     \(coverageError!)
 
-                    You MUST ensure your output cards collectively cover ALL time periods from the input cards. Do not drop any time segments.
+                    您必须确保输出卡片共同覆盖输入卡片中的所有时间段。不要遗漏任何时间段。
                     """)
                 }
 
                 if !durationValid && durationError != nil {
                     errorMessages.append("""
-                    DURATION ERROR:
+                    持续时间错误：
                     \(durationError!)
 
-                    REMINDER: All cards except the last one must be at least 10 minutes long. Please merge short activities into longer, more meaningful cards that tell a coherent story.
+                    提醒：除了最后一张卡片外，所有卡片必须至少10分钟长。请将短活动合并为更长的、更有意义的卡片，以讲述一个连贯的故事。
                     """)
                 }
 
@@ -791,11 +798,11 @@ final class GeminiDirectProvider: LLMProvider {
                 actualPromptUsed = basePrompt + """
 
 
-                PREVIOUS ATTEMPT FAILED - CRITICAL REQUIREMENTS NOT MET:
+                先前的尝试失败 - 未满足关键要求：
 
                 \(errorMessages.joined(separator: "\n\n"))
 
-                Please fix these issues and ensure your output meets all requirements.
+                请修复这些问题并确保您的输出满足所有要求。
                 """
 
                 // Brief delay for enhanced prompt retry
