@@ -1,7 +1,17 @@
 # Dayflow 中文版 - 您的AI工作日记录助手
 
+> **📢 重要说明：这是 Dayflow 的中文翻译版本**
+>
+> 本项目是 [Dayflow](https://github.com/JerryZLiu/Dayflow) 的中文本地化版本，主要提供：
+> - ✅ 完整的中文界面和用户体验
+> - ✅ 针对中文用户优化的AI提示词
+> - ✅ 中文应用和内容的识别增强
+> - 🔗 **原版项目**: [https://github.com/JerryZLiu/Dayflow](https://github.com/JerryZLiu/Dayflow)
+>
+> 后续可能会根据中文用户需求迭代一些本地化功能。
+
 <div align="center">
-  <img src="docs/images/dayflow_header.png" alt="Dayflow CN" width="400">
+  <img src="docs/images/dayflow_header.png" alt="Dayflow" width="400">
 </div>
 
 <div align="center">
@@ -11,12 +21,14 @@
 
 <div align="center">
   <!-- Badges -->
+  <a href="https://github.com/JerryZLiu/Dayflow">
+    <img src="https://img.shields.io/badge/原版项目-Dayflow-blue?logo=github" alt="Original Project">
+  </a>
   <img src="https://img.shields.io/badge/macOS-13%2B-000?logo=apple" alt="Platform: macOS 13+">
   <img src="https://img.shields.io/badge/SwiftUI-✓-orange" alt="SwiftUI">
-  <img src="https://img.shields.io/badge/更新-Sparkle-informational" alt="Updates: Sparkle">
   <img src="https://img.shields.io/badge/AI-Gemini%20或%20本地模型-blue" alt="AI: Gemini / Local">
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License: MIT">
-  <img src="https://img.shields.io/badge/语言-中文%20本地化-red" alt="Language: Chinese Localized">
+  <img src="https://img.shields.io/badge/版本-中文翻译版-red" alt="Chinese Localization">
 </div>
 
 <div align="center">
@@ -54,7 +66,9 @@ Dayflow 是一款**原生 macOS 应用**（SwiftUI），以 **1 FPS** 录制屏�
 
 ## 为什么选择中文版？
 
-Dayflow 中文版在原版基础上进行了全面的本地化优化：
+### 🌟 这是原版的中文翻译版本
+
+我们专注于将优秀的 Dayflow 带给中文用户，主要提供：
 
 ### 🇨🇳 完整中文化
 - **界面全中文**：所有UI元素、菜单、设置均已中文化
@@ -65,6 +79,13 @@ Dayflow 中文版在原版基础上进行了全面的本地化优化：
 - **更好的中文理解**：AI分析更准确地理解中文应用和内容
 - **本地化体验**：支持中文应用名称和软件分类识别
 - **持续优化**：专门针对中文用户的使用反馈进行改进
+
+### 🔄 版本同步
+- **保持更新**：及时同步原版的功能更新和安全修复
+- **基础功能**：核心功能与原版保持一致
+- **本地化迭代**：根据中文用户需求可能会添加一些本地化功能
+
+> 💡 **推荐用户**：如果您是中文用户，希望获得更友好的中文体验，欢迎使用本中文版。如果您需要最新的原版功能或希望参与原版开发，请访问[原版项目](https://github.com/JerryZLiu/Dayflow)。
 
 ---
 
@@ -139,15 +160,22 @@ flowchart LR
 
 ### 安装方式
 
-#### 📦 下载安装（推荐用户）
-1. 从 **GitHub Releases** 下载最新的 `Dayflow_CN.dmg`
+#### 📦 下载安装（推荐中文用户）
+
+**选择1：中文版（推荐）**
+1. 从本仓库 Releases 下载最新的 `Dayflow_CN.dmg`
 2. 打开应用，授予**屏幕和系统音频录制**权限：
    macOS → **系统设置** → **隐私与安全性** → **屏幕和系统音频录制** → 启用 **Dayflow CN**
 
+**选择2：原版（英文界面）**
+- 如果您需要最新的原版功能，可以从[原版项目](https://github.com/JerryZLiu/Dayflow)下载
+
 <div align="center">
-  <a href="https://github.com/JerryZLiu/Dayflow/releases/latest">
+  <a href="https://github.com/gjwhw/Dayflow-cn/releases">
     <img src="https://img.shields.io/badge/下载%20中文版-⬇%20%20Dayflow%20CN.dmg-blue?style=for-the-badge&logo=apple" alt="下载最新的 Dayflow CN.dmg">
   </a>
+  <br>
+  <small>中文版 Releases | 原版 <a href="https://github.com/JerryZLiu/Dayflow/releases">点击这里</a></small>
 </div>
 
 #### 🔧 从源码构建（开发者）
@@ -251,6 +279,8 @@ Dayflow/
 - 🚀 **性能优化**：针对中文使用场景的性能调优
 
 ### 开发环境设置
+
+**中文版开发**
 ```bash
 # 克隆中文版项目
 git clone https://github.com/gjwhw/Dayflow-cn.git
@@ -260,6 +290,14 @@ cd Dayflow-cn
 git checkout feature/custom-build-location
 
 # 打开Xcode项目
+open Dayflow.xcodeproj
+```
+
+**原版开发**
+```bash
+# 克隆原版项目（如果您想参与原版开发）
+git clone https://github.com/JerryZLiu/Dayflow.git
+cd Dayflow
 open Dayflow.xcodeproj
 ```
 
@@ -291,13 +329,47 @@ open Dayflow.xcodeproj
 
 ---
 
-## 中文版维护者
+## 项目信息
 
-本项目中文版由社区维护，持续为中文用户提供更好的本地化体验。
+### 原版项目
+- **作者**: Jerry Liu
+- **仓库**: https://github.com/JerryZLiu/Dayflow
+- **许可**: MIT License
+- **特别感谢**: 感谢Jerry Liu开发了这样优秀的AI时间管理工具！
 
-如果您在使用过程中遇到问题或有改进建议，欢迎：
+### 中文翻译版
+- **翻译和维护**: h3glove
+- **仓库**: https://github.com/gjwhw/Dayflow-cn
+- **主要工作**: 基于原版的**个人学习练习项目**，主要进行中文本地化和用户体验优化
+- **许可**: MIT License (继承原版)
+- **项目性质**: 这是我个人的学习和翻译练习项目，旨在将优秀的软件带给更多中文用户
+
+### 反馈和贡献
+
+**中文版反馈**
+如果您在使用中文版时遇到问题或有改进建议：
 - 提交 [Issue](https://github.com/gjwhw/Dayflow-cn/issues)
 - 参与 [讨论](https://github.com/gjwhw/Dayflow-cn/discussions)
-- 提交 [Pull Request](https://github.com/gjwhw/Dayflow-cn/pulls)
+
+**原版反馈**
+如果您想反馈原版功能相关的问题：
+- 访问 [原版项目](https://github.com/JerryZLiu/Dayflow)
+
+---
+
+## 🙏 致谢
+
+**特别感谢原版作者 Jerry Liu！**
+
+感谢您开发了如此优秀的AI时间管理工具。这个中文翻译版是我的个人学习练习项目，希望能够：
+
+- 让更多中文用户了解和使用Dayflow
+- 提供更友好的中文用户体验
+- 学习和提升自己的技术水平
+- 为开源社区贡献一份力量
+
+**声明**: 本项目完全遵循MIT许可证，所有代码基于原版Dayflow进行本地化优化。
 
 **让AI更好地理解中文工作场景，打造最适合中国用户的时间管理工具！** 🇨🇳
+
+*感谢原作者的杰出工作，感谢开源社区的共享精神！*
